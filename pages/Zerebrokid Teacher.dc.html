@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e6e8ef;font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#4C3AE3}a:hover{color:#3a2ec2}
+  .tc-scroll{overflow-y:auto;scrollbar-width:none}
+  .tc-scroll::-webkit-scrollbar{display:none}
+  @keyframes tcpop{0%{transform:scale(.6);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;gap:48px;flex-wrap:wrap;background:radial-gradient(circle at 30% 20%,#eef0f6,#e2e4ec)">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div style="position:relative;width:392px;height:812px;background:#1a1c26;border-radius:52px;padding:11px;box-shadow:0 40px 80px -20px rgba(40,44,60,.5),0 0 0 2px rgba(255,255,255,.06) inset">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:30px;background:#1a1c26;border-radius:0 0 20px 20px;z-index:50"></div>
+      <div style="position:relative;width:100%;height:100%;background:#F4F5F8;border-radius:42px;overflow:hidden;display:flex;flex-direction:column">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 6px;font-size:14px;font-weight:800;color:#2A2D3A;flex:none">
+          <span>9:41</span>
+          <span style="display:flex;gap:6px;align-items:center;font-size:12px"><span>5G</span><span style="display:inline-block;width:22px;height:11px;border:1.6px solid currentColor;border-radius:3px;position:relative"><span style="position:absolute;inset:1.5px;right:5px;background:currentColor;border-radius:1px"></span></span></span>
+        </div>
+
+        <div class="tc-scroll" style="flex:1;position:relative">
+
+          <!-- ============ CLASS HOME ============ -->
+          <sc-if value="{{ isClass }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+              <div style="font-size:13px;font-weight:700;color:#8A8FA3">Tuesday, 9 July</div>
+              <div style="width:38px;height:38px;border-radius:12px;background:#e5e2fb;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:#4C3AE3">RS</div>
+            </div>
+            <div style="font-size:25px;font-weight:900;color:#1e2029;letter-spacing:-.4px;margin-bottom:2px">Good morning, Ms. Rao</div>
+            <div style="font-size:14px;font-weight:600;color:#8A8FA3;margin-bottom:20px">Holy Bless School · 2 classes today</div>
+
+            <div onClick="{{ goAssign }}" style="cursor:pointer;background:linear-gradient(135deg,#4C3AE3,#6355e8);border-radius:22px;padding:20px;color:#fff;box-shadow:0 16px 30px -10px rgba(76,58,227,.5);margin-bottom:20px">
+              <div style="display:flex;align-items:center;gap:14px">
+                <div style="width:50px;height:50px;border-radius:15px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:26px">✓</div>
+                <div style="flex:1"><div style="font-size:19px;font-weight:900;line-height:1.1">Mark topics taught today</div><div style="font-size:13px;font-weight:600;opacity:.9">One tap assigns the full learning loop</div></div>
+                <div style="font-size:24px">›</div>
+              </div>
+            </div>
+
+            <div style="font-size:13px;font-weight:900;color:#8A8FA3;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px">Your classes</div>
+            <sc-for list="{{ classes }}" as="c" hint-placeholder-count="2">
+              <div onClick="{{ goAssign }}" style="cursor:pointer;background:#fff;border:1.5px solid #ecedf3;border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 4px 12px rgba(40,44,60,.05)">
+                <div style="display:flex;align-items:center;justify-content:space-between">
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <div style="width:46px;height:46px;border-radius:13px;background:{{ c.tint }};display:flex;align-items:center;justify-content:center;font-size:20px">{{ c.emoji }}</div>
+                    <div><div style="font-size:16.5px;font-weight:900;color:#1e2029">{{ c.name }}</div><div style="font-size:12.5px;font-weight:700;color:#8A8FA3">{{ c.meta }}</div></div>
+                  </div>
+                  <div style="font-size:12px;font-weight:800;color:{{ c.statusColor }};background:{{ c.statusBg }};padding:5px 10px;border-radius:14px">{{ c.status }}</div>
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="background:#fff;border:1.5px solid #ecedf3;border-radius:18px;padding:16px;margin-top:6px">
+              <div style="font-size:13px;font-weight:900;color:#8A8FA3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Today at a glance</div>
+              <div style="display:flex;gap:10px">
+                <div style="flex:1;text-align:center"><div style="font-size:24px;font-weight:900;color:#4C3AE3">2</div><div style="font-size:11.5px;font-weight:700;color:#8A8FA3">topics taught</div></div>
+                <div style="flex:1;text-align:center;border-left:1.5px solid #ecedf3;border-right:1.5px solid #ecedf3"><div style="font-size:24px;font-weight:900;color:#22a06b">76</div><div style="font-size:11.5px;font-weight:700;color:#8A8FA3">students assigned</div></div>
+                <div style="flex:1;text-align:center"><div style="font-size:24px;font-weight:900;color:#e08a2a">61</div><div style="font-size:11.5px;font-weight:700;color:#8A8FA3">quizzes done</div></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ASSIGN (one tap) ============ -->
+          <sc-if value="{{ isAssign }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Mark taught & assign</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8A8FA3;margin-bottom:16px">Class 10-A · Mathematics · 38 students</div>
+            <div style="font-size:12.5px;font-weight:900;color:#8A8FA3;text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px">Today's syllabus · pick what you taught</div>
+            <sc-for list="{{ syllabus }}" as="t" hint-placeholder-count="4">
+              <div onClick="{{ t.toggle }}" style="cursor:pointer;background:#fff;border:2px solid {{ t.border }};border-radius:16px;padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:12px">
+                <div style="width:26px;height:26px;border-radius:8px;border:2px solid {{ t.boxBorder }};background:{{ t.boxBg }};display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;font-weight:900;flex:none">{{ t.check }}</div>
+                <div style="flex:1"><div style="font-size:15.5px;font-weight:800;color:#1e2029">{{ t.title }}</div><div style="font-size:12px;font-weight:700;color:#a7abbb">{{ t.chapter }}</div></div>
+              </div>
+            </sc-for>
+
+            <div style="background:#f0effb;border-radius:16px;padding:14px 16px;margin:14px 0;font-size:13px;font-weight:700;color:#4C3AE3;line-height:1.5">📦 Assigning includes: explanation · video · practice · curiosity · misconceptions · activity · quiz — for every student.</div>
+
+            <button onClick="{{ doAssign }}" style="cursor:pointer;width:100%;border:none;background:#4C3AE3;color:#fff;font-weight:900;font-size:16px;font-family:inherit;padding:16px;border-radius:16px;box-shadow:0 12px 24px -8px rgba(76,58,227,.5)">Assign learning loop to 38 students</button>
+
+            <sc-if value="{{ assigned }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:16px;background:#e4f6ee;border:1.5px solid #b9e6cf;border-radius:16px;padding:18px;text-align:center;animation:tcpop .4s ease">
+                <div style="font-size:40px">✅</div>
+                <div style="font-size:17px;font-weight:900;color:#178a56">Assigned to 38 students</div>
+                <div style="font-size:12.5px;font-weight:700;color:#3aa877">Homework + quiz sent · due tomorrow 9 AM</div>
+              </div>
+            </sc-if>
+          </div>
+          </sc-if>
+
+          <!-- ============ CONTENT GENERATOR ============ -->
+          <sc-if value="{{ isContent }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Ready-to-teach</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8A8FA3;margin-bottom:16px">No prep from home. Generate class-ready material.</div>
+            <div style="background:#fff;border:1.5px solid #ecedf3;border-radius:16px;padding:14px 16px;display:flex;align-items:center;gap:10px;margin-bottom:8px">
+              <span style="font-size:18px">🔎</span><span style="flex:1;font-size:15px;font-weight:700;color:#1e2029">States of Matter</span><span style="font-size:12px;font-weight:800;color:#4C3AE3;background:#eceafd;padding:4px 10px;border-radius:12px">Class 9</span>
+            </div>
+            <div onClick="{{ noop }}" style="cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;background:#4C3AE3;color:#fff;font-weight:900;font-size:15px;padding:13px;border-radius:14px;margin-bottom:18px">✨ Generated ready</div>
+
+            <div style="background:#fff;border:1.5px solid #ecedf3;border-radius:18px;overflow:hidden;box-shadow:0 8px 20px rgba(40,44,60,.06);margin-bottom:16px">
+              <div style="background:#1e2029;color:#fff;padding:14px 16px;font-size:14px;font-weight:800;display:flex;justify-content:space-between"><span>📊 Class deck preview</span><span style="opacity:.6">12 slides</span></div>
+              <div style="padding:16px">
+                <div style="aspect-ratio:16/9;background:linear-gradient(135deg,#4C3AE3,#6355e8);border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:18px;color:#fff;margin-bottom:12px">
+                  <div style="font-size:11px;font-weight:800;opacity:.8;letter-spacing:.5px">CHAPTER 1</div>
+                  <div style="font-size:22px;font-weight:900;line-height:1.1">States of Matter</div>
+                  <div style="font-size:12px;font-weight:600;opacity:.85;margin-top:4px">Solid · Liquid · Gas</div>
+                </div>
+                <div style="display:flex;gap:8px">
+                  <div style="flex:1;aspect-ratio:16/10;background:#f0f1f6;border-radius:8px;padding:8px;font-size:9px;font-weight:700;color:#8A8FA3">Board work: particle diagram</div>
+                  <div style="flex:1;aspect-ratio:16/10;background:#f0f1f6;border-radius:8px;padding:8px;font-size:9px;font-weight:700;color:#8A8FA3">Example: ice → water → steam</div>
+                  <div style="flex:1;aspect-ratio:16/10;background:#f0f1f6;border-radius:8px;padding:8px;font-size:9px;font-weight:700;color:#8A8FA3">Class activity</div>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:10px">
+              <button style="cursor:pointer;flex:1;border:none;background:#4C3AE3;color:#fff;font-weight:900;font-size:14px;font-family:inherit;padding:14px;border-radius:14px">▶ Present</button>
+              <button style="cursor:pointer;border:1.5px solid #d9dbe6;background:#fff;color:#4a4d5e;font-weight:800;font-size:14px;font-family:inherit;padding:14px 16px;border-radius:14px">⬇ PPT</button>
+              <button style="cursor:pointer;border:1.5px solid #d9dbe6;background:#fff;color:#4a4d5e;font-weight:800;font-size:14px;font-family:inherit;padding:14px 16px;border-radius:14px">✎ Edit</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ RESULTS (heatmap) ============ -->
+          <sc-if value="{{ isResults }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Quiz results</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8A8FA3;margin-bottom:14px">States of Matter · Class 9-B</div>
+
+            <div onClick="{{ goInsight }}" style="cursor:pointer;display:flex;gap:10px;margin-bottom:16px">
+              <div style="flex:1;background:#fff;border:1.5px solid #ecedf3;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900;color:#22a06b">68%</div><div style="font-size:11px;font-weight:700;color:#8A8FA3">class avg</div></div>
+              <div style="flex:1;background:#fff;border:1.5px solid #ecedf3;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900;color:#4C3AE3">33</div><div style="font-size:11px;font-weight:700;color:#8A8FA3">completed</div></div>
+              <div style="flex:1;background:#fff;border:1.5px solid #ecedf3;border-radius:14px;padding:12px;text-align:center"><div style="font-size:22px;font-weight:900;color:#d94040">12</div><div style="font-size:11px;font-weight:700;color:#8A8FA3">struggling</div></div>
+            </div>
+
+            <div style="font-size:12px;font-weight:900;color:#8A8FA3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Understanding by student</div>
+            <sc-for list="{{ students }}" as="st" hint-placeholder-count="6">
+              <div onClick="{{ goInsight }}" style="cursor:pointer;background:#fff;border:1.5px solid #ecedf3;border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
+                <div style="width:34px;height:34px;border-radius:10px;background:{{ st.avBg }};color:{{ st.avColor }};display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;flex:none">{{ st.initials }}</div>
+                <div style="flex:1;min-width:0"><div style="font-size:14.5px;font-weight:800;color:#1e2029">{{ st.name }}</div></div>
+                <div style="display:flex;gap:4px">
+                  <sc-for list="{{ st.cells }}" as="cell" hint-placeholder-count="5">
+                    <div style="width:16px;height:16px;border-radius:4px;background:{{ cell }}"></div>
+                  </sc-for>
+                </div>
+                <div style="font-size:14px;font-weight:900;color:{{ st.scoreColor }};width:38px;text-align:right">{{ st.score }}</div>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:14px;justify-content:center;margin-top:10px;font-size:11px;font-weight:700;color:#8A8FA3">
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#22a06b;display:inline-block"></span>Got it</span>
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#f3c14b;display:inline-block"></span>Shaky</span>
+              <span style="display:flex;align-items:center;gap:5px"><span style="width:12px;height:12px;border-radius:3px;background:#e88;display:inline-block"></span>Missed</span>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ CLASS INSIGHT ============ -->
+          <sc-if value="{{ isInsight }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div onClick="{{ backResults }}" style="cursor:pointer;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:12px">‹ Results</div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Class insight</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8A8FA3;margin-bottom:16px">What to reteach in Class 9-B</div>
+
+            <div style="background:linear-gradient(135deg,#fbeee4,#fff);border:1.5px solid #f5dcc4;border-radius:18px;padding:18px;margin-bottom:16px">
+              <div style="font-size:14px;font-weight:900;color:#c2500f;margin-bottom:6px">⚠ Reteach recommended</div>
+              <div style="font-size:15px;font-weight:800;color:#1e2029;line-height:1.4">12 students are weak on <span style="color:#c2500f">evaporation vs boiling</span></div>
+              <div style="font-size:12.5px;font-weight:700;color:#a97a4a;margin-top:4px">Most common wrong answer: "both happen only at 100°C"</div>
+            </div>
+
+            <div style="font-size:12px;font-weight:900;color:#8A8FA3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Concept mastery</div>
+            <sc-for list="{{ concepts }}" as="cn" hint-placeholder-count="4">
+              <div style="margin-bottom:14px">
+                <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;color:#3a3d4d;margin-bottom:5px"><span>{{ cn.name }}</span><span style="color:{{ cn.color }}">{{ cn.pct }}</span></div>
+                <div style="height:9px;background:#eceef4;border-radius:9px;overflow:hidden"><div style="height:100%;width:{{ cn.pct }};background:{{ cn.color }};border-radius:9px"></div></div>
+              </div>
+            </sc-for>
+
+            <div onClick="{{ goSub }}" style="cursor:pointer;background:#fff;border:1.5px solid #ecedf3;border-radius:16px;padding:14px 16px;margin-top:8px;display:flex;align-items:center;gap:12px">
+              <div style="font-size:22px">🔁</div><div style="flex:1"><div style="font-size:14.5px;font-weight:800;color:#1e2029">Substitute-ready plan</div><div style="font-size:12px;font-weight:700;color:#a7abbb">If you're absent tomorrow</div></div><div style="font-size:20px;color:#c3c6d2">›</div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SUBSTITUTE-READY ============ -->
+          <sc-if value="{{ isSub }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div onClick="{{ backInsight }}" style="cursor:pointer;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:12px">‹ Back</div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Substitute-ready</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8A8FA3;margin-bottom:16px">A stand-in teacher can pick this up in seconds.</div>
+            <div style="background:#e4f6ee;border:1.5px solid #b9e6cf;border-radius:14px;padding:12px 14px;font-size:13px;font-weight:800;color:#178a56;margin-bottom:16px">✓ Plan ready for Class 9-B · Period 5</div>
+            <div style="background:#fff;border:1.5px solid #ecedf3;border-radius:18px;padding:6px 18px">
+              <sc-for list="{{ subPlan }}" as="p" hint-placeholder-count="4">
+                <div style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1.5px solid #f2f3f7">
+                  <div style="width:30px;height:30px;border-radius:9px;background:#eceafd;color:#4C3AE3;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;flex:none">{{ p.n }}</div>
+                  <div style="flex:1"><div style="font-size:15px;font-weight:800;color:#1e2029">{{ p.title }}</div><div style="font-size:12.5px;font-weight:700;color:#8A8FA3">{{ p.detail }}</div></div>
+                  <div style="font-size:12px;font-weight:800;color:#a7abbb">{{ p.time }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+        </div>
+
+        <!-- BOTTOM TABS -->
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none;display:flex;justify-content:space-around;align-items:center;padding:10px 8px 22px;background:#fff;border-top:1.5px solid #ecedf3">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="4">
+            <div onClick="{{ tb.go }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;color:{{ tb.color }}">
+              <div style="font-size:20px">{{ tb.icon }}</div>
+              <div style="font-size:11px;font-weight:800">{{ tb.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;color:#8A8FA3;letter-spacing:.3px">Zerebrokid · Teacher</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { screen:'class', tab:'class', picked:{}, assigned:false };
+  go(screen, tab){ this.setState(s=>({ screen, tab: tab||s.tab })); this._top(); }
+  nav(screen){ this.setState({ screen }); this._top(); }
+  _top(){ setTimeout(()=>{ const el=document.querySelector('.tc-scroll'); if(el) el.scrollTop=0; },0); }
+
+  renderVals(){
+    const s=this.state;
+    const mainTabs=['class','assign','content','results'];
+    const showTabs=mainTabs.includes(s.screen);
+
+    const mk=(id,icon,label)=>({ icon,label, go:()=>this.go(id,id), color: s.tab===id ? '#4C3AE3':'#a7abbb' });
+    const tabs=[ mk('class','🏫','Class'), mk('assign','✓','Assign'), mk('content','📄','Content'), mk('results','📊','Results') ];
+
+    const classes=[
+      { emoji:'📐', name:'Class 10-A', meta:'Maths · 38 students · P2', tint:'#e9e6fb', status:'Taught ✓', statusColor:'#22a06b', statusBg:'#e4f6ee' },
+      { emoji:'💧', name:'Class 9-B', meta:'Science · 38 students · P5', tint:'#e6f0fb', status:'Pending', statusColor:'#e08a2a', statusBg:'#fbf1e4' },
+    ];
+
+    const syllabusDefs=[
+      { id:'ap', title:'Arithmetic Progression', chapter:'Ch 5 · nth term & sum' },
+      { id:'quad', title:'Quadratic Equations', chapter:'Ch 4 · factorisation' },
+      { id:'tri', title:'Similar Triangles', chapter:'Ch 6 · intro' },
+      { id:'stat', title:'Statistics', chapter:'Ch 14 · mean & median' },
+    ];
+    const syllabus=syllabusDefs.map(d=>{ const on=!!s.picked[d.id]; return {
+      title:d.title, chapter:d.chapter,
+      border:on?'#4C3AE3':'#ecedf3', boxBorder:on?'#4C3AE3':'#c9ccd8', boxBg:on?'#4C3AE3':'#fff', check:on?'✓':'',
+      toggle:()=>this.setState(st=>({picked:{...st.picked,[d.id]:!st.picked[d.id]}})),
+    };});
+
+    const G='#22a06b',Y='#f3c14b',R='#e88888';
+    const students=[
+      { name:'Aarav Mehta', initials:'AM', score:'9/10', cells:[G,G,G,Y,G], avBg:'#e4f6ee', avColor:'#178a56', scoreColor:'#22a06b' },
+      { name:'Diya Sharma', initials:'DS', score:'8/10', cells:[G,G,Y,G,G], avBg:'#e4f6ee', avColor:'#178a56', scoreColor:'#22a06b' },
+      { name:'Kabir Khan', initials:'KK', score:'5/10', cells:[G,R,Y,R,Y], avBg:'#fbf1e4', avColor:'#c2500f', scoreColor:'#e08a2a' },
+      { name:'Isha Patel', initials:'IP', score:'4/10', cells:[R,Y,R,R,G], avBg:'#fbe9e9', avColor:'#c23a3a', scoreColor:'#d94040' },
+      { name:'Rohan Das', initials:'RD', score:'7/10', cells:[G,Y,G,Y,G], avBg:'#fbf1e4', avColor:'#c2500f', scoreColor:'#e08a2a' },
+      { name:'Sara Ali', initials:'SA', score:'9/10', cells:[G,G,G,G,Y], avBg:'#e4f6ee', avColor:'#178a56', scoreColor:'#22a06b' },
+    ];
+    const concepts=[
+      { name:'Three states of matter', pct:'88%', color:'#22a06b' },
+      { name:'Melting & freezing', pct:'74%', color:'#4C3AE3' },
+      { name:'Evaporation vs boiling', pct:'41%', color:'#e08a2a' },
+      { name:'Particle theory', pct:'66%', color:'#4C3AE3' },
+    ];
+    const subPlan=[
+      { n:1, title:'Recap: three states', detail:'Play episode · 6 min', time:'10 min' },
+      { n:2, title:'Board work: particle diagram', detail:'Pre-loaded slide 4', time:'15 min' },
+      { n:3, title:'Class activity: ice → steam', detail:'Instructions on slide 8', time:'15 min' },
+      { n:4, title:'Assign quiz', detail:'One tap · auto-graded', time:'5 min' },
+    ];
+
+    return {
+      isClass:s.screen==='class', isAssign:s.screen==='assign', isContent:s.screen==='content',
+      isResults:s.screen==='results', isInsight:s.screen==='insight', isSub:s.screen==='sub',
+      showTabs, tabs, classes, syllabus, students, concepts, subPlan, assigned:s.assigned,
+      goAssign:()=>this.go('assign','assign'),
+      doAssign:()=>this.setState({assigned:true}),
+      goInsight:()=>this.nav('insight'),
+      backResults:()=>this.go('results','results'),
+      goSub:()=>this.nav('sub'),
+      backInsight:()=>this.nav('insight'),
+      noop:()=>{},
+    };
+  }
+}
+</script>
+</body>
+</html>

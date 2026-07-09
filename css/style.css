@@ -1,0 +1,51 @@
+@import url('navbar.css');
+@import url('hero.css');
+@import url('features.css');
+@import url('footer.css');
+@import url('responsive.css');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#F7F8FC;
+    color:#222;
+    overflow-x:hidden;
+}
+
+.container{
+    width:min(1200px,90%);
+    margin:auto;
+}
+
+section{
+    padding:100px 0;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+a{
+    text-decoration:none;
+}
+
+button{
+    cursor:pointer;
+}
+.bg-light{
+    background:#F7F8FC;
+}
+
+.bg-white{
+    background:white;
+}

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e7ebe9;font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#4C3AE3}a:hover{color:#3a2ec2}
+  .pt-scroll{overflow-y:auto;scrollbar-width:none}
+  .pt-scroll::-webkit-scrollbar{display:none}
+  @keyframes ptpulse{0%{transform:scale(1);opacity:.5}70%{transform:scale(2.4);opacity:0}100%{opacity:0}}
+  @keyframes ptalert{0%,100%{background:#d63a3a}50%{background:#c22}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;gap:48px;flex-wrap:wrap;background:radial-gradient(circle at 30% 20%,#eef1ef,#e2e6e4)">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div style="position:relative;width:392px;height:812px;background:#171a1d;border-radius:52px;padding:11px;box-shadow:0 40px 80px -20px rgba(30,40,36,.5),0 0 0 2px rgba(255,255,255,.06) inset">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:30px;background:#171a1d;border-radius:0 0 20px 20px;z-index:50"></div>
+      <div style="position:relative;width:100%;height:100%;background:#F4F6F5;border-radius:42px;overflow:hidden;display:flex;flex-direction:column">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 6px;font-size:14px;font-weight:800;color:{{ statusColor }};flex:none;position:relative;z-index:10">
+          <span>9:41</span>
+          <span style="display:flex;gap:6px;align-items:center;font-size:12px"><span>5G</span><span style="display:inline-block;width:22px;height:11px;border:1.6px solid currentColor;border-radius:3px;position:relative"><span style="position:absolute;inset:1.5px;right:5px;background:currentColor;border-radius:1px"></span></span></span>
+        </div>
+
+        <div class="pt-scroll" style="flex:1;position:relative">
+
+          <!-- ============ HOME ============ -->
+          <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:13px;font-weight:700;color:#8a938e">Tuesday, 9 July</div>
+            <div style="font-size:24px;font-weight:900;color:#1c2420;letter-spacing:-.4px;margin-bottom:14px">Hello, Priya 👋</div>
+
+            <!-- child selector -->
+            <div style="display:flex;gap:10px;margin-bottom:18px">
+              <div style="flex:1;background:#1f7a4d;border-radius:18px;padding:14px;color:#fff;display:flex;align-items:center;gap:10px"><div style="width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900">A</div><div><div style="font-size:15px;font-weight:900">Aarav</div><div style="font-size:11.5px;font-weight:700;opacity:.85">Class 10</div></div></div>
+              <div style="width:64px;background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px"><div style="width:36px;height:36px;border-radius:11px;background:#eef1ef;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;color:#8a938e">M</div><div style="font-size:10px;font-weight:800;color:#8a938e">Meera</div></div>
+            </div>
+
+            <div style="font-size:13px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px">Aarav · today at a glance</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+              <div onClick="{{ goReports }}" style="cursor:pointer;background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px"><div style="font-size:22px">📚</div><div style="font-size:20px;font-weight:900;color:#1c2420;margin-top:6px">2 / 2</div><div style="font-size:12px;font-weight:700;color:#8a938e">topics studied</div></div>
+              <div onClick="{{ goReports }}" style="cursor:pointer;background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px"><div style="font-size:22px">✅</div><div style="font-size:20px;font-weight:900;color:#1f7a4d;margin-top:6px">8 / 10</div><div style="font-size:12px;font-weight:700;color:#8a938e">latest quiz</div></div>
+              <div onClick="{{ goActivity }}" style="cursor:pointer;background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px"><div style="font-size:22px">⏱️</div><div style="font-size:20px;font-weight:900;color:#1c2420;margin-top:6px">2h 40m</div><div style="font-size:12px;font-weight:700;color:#8a938e">screen time</div></div>
+              <div onClick="{{ goSafety }}" style="cursor:pointer;background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px"><div style="font-size:22px">📍</div><div style="font-size:20px;font-weight:900;color:#1f7a4d;margin-top:6px">At School</div><div style="font-size:12px;font-weight:700;color:#8a938e">safe zone</div></div>
+            </div>
+
+            <div style="background:linear-gradient(135deg,#4C3AE3,#6355e8);border-radius:18px;padding:16px;color:#fff;display:flex;align-items:center;gap:12px">
+              <div style="font-size:26px">💡</div><div style="flex:1"><div style="font-size:14.5px;font-weight:900">On track this month</div><div style="font-size:12.5px;font-weight:600;opacity:.9">Aarav has covered everything school taught. No tuition needed yet.</div></div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SAFETY / LOCATION ============ -->
+          <sc-if value="{{ isSafety }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="position:relative;height:340px;background:#dce4df;overflow:hidden">
+              <!-- stylised map -->
+              <div style="position:absolute;inset:0;background:linear-gradient(135deg,#e8ede9,#d6ded9)"></div>
+              <div style="position:absolute;top:60px;left:-20px;right:-20px;height:16px;background:#c7d0cb;transform:rotate(-8deg)"></div>
+              <div style="position:absolute;top:180px;left:-20px;right:-20px;height:22px;background:#c7d0cb;transform:rotate(5deg)"></div>
+              <div style="position:absolute;top:-20px;bottom:-20px;left:120px;width:16px;background:#c7d0cb;transform:rotate(6deg)"></div>
+              <div style="position:absolute;top:-20px;bottom:-20px;left:250px;width:20px;background:#c7d0cb;transform:rotate(-4deg)"></div>
+              <div style="position:absolute;top:100px;left:40px;width:60px;height:50px;background:#cdd6d0;border-radius:4px"></div>
+              <div style="position:absolute;top:210px;left:200px;width:80px;height:60px;background:#cdd6d0;border-radius:4px"></div>
+              <!-- pin -->
+              <div style="position:absolute;top:150px;left:50%;transform:translate(-50%,-50%)">
+                <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:40px;height:40px;border-radius:50%;background:#1f7a4d;animation:ptpulse 2.5s ease-out infinite"></div>
+                <div style="position:relative;width:44px;height:44px;border-radius:50% 50% 50% 0;background:#1f7a4d;transform:rotate(-45deg);box-shadow:0 6px 14px rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center"><div style="transform:rotate(45deg);font-size:20px">🎒</div></div>
+              </div>
+              <div style="position:absolute;top:14px;left:16px;right:16px;background:rgba(255,255,255,.95);border-radius:16px;padding:12px 14px;box-shadow:0 6px 16px rgba(0,0,0,.1)">
+                <div style="display:flex;align-items:center;justify-content:space-between"><div style="font-size:15px;font-weight:900;color:#1c2420">Aarav is at School 🏫</div><div style="font-size:11px;font-weight:800;color:#1f7a4d;background:#e2f2ea;padding:4px 9px;border-radius:12px">● Live</div></div>
+                <div style="font-size:12px;font-weight:700;color:#8a938e;margin-top:2px">Updated 30 sec ago · accuracy 12m</div>
+              </div>
+            </div>
+            <div style="padding:16px 20px 22px">
+              <div style="background:#fdf3e6;border:1.5px solid #f3ddba;border-radius:14px;padding:12px 14px;font-size:12.5px;font-weight:700;color:#9a6a1a;line-height:1.5;margin-bottom:14px">🔋 Works even if the phone is switched off — you'll see the <b>last known location</b> and time, and tracking resumes automatically when it powers back on.</div>
+              <div style="font-size:12px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Safe zones</div>
+              <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+                <div style="background:#e2f2ea;color:#1f7a4d;font-size:13px;font-weight:800;padding:8px 14px;border-radius:20px">🏫 School ✓</div>
+                <div style="background:#fff;border:1.5px solid #e6ebe8;color:#5a635e;font-size:13px;font-weight:800;padding:8px 14px;border-radius:20px">📖 Tuition</div>
+                <div style="background:#fff;border:1.5px solid #e6ebe8;color:#5a635e;font-size:13px;font-weight:800;padding:8px 14px;border-radius:20px">🏠 Home</div>
+              </div>
+              <button onClick="{{ goSos }}" style="cursor:pointer;width:100%;border:none;background:#fbe9e9;color:#c22;font-weight:900;font-size:14px;font-family:inherit;padding:14px;border-radius:14px;margin-bottom:10px">🚨 View SOS alert (demo)</button>
+              <button onClick="{{ goActivity }}" style="cursor:pointer;width:100%;border:1.5px solid #e6ebe8;background:#fff;color:#3a433e;font-weight:800;font-size:14px;font-family:inherit;padding:14px;border-radius:14px">📱 Live activity & app usage</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SOS ALERT ============ -->
+          <sc-if value="{{ isSos }}" hint-placeholder-val="{{ true }}">
+          <div style="min-height:100%;background:#c22;padding:24px 22px;color:#fff;display:flex;flex-direction:column;animation:ptalert 1.2s ease-in-out infinite">
+            <div onClick="{{ backSafety }}" style="cursor:pointer;font-size:14px;font-weight:800;opacity:.85">‹ Close</div>
+            <div style="text-align:center;margin-top:16px">
+              <div style="font-size:56px">🚨</div>
+              <div style="font-size:30px;font-weight:900;letter-spacing:.5px">SOS from Aarav</div>
+              <div style="font-size:15px;font-weight:700;opacity:.9;margin-top:2px">Triggered 1 min ago · 4:52 PM</div>
+            </div>
+            <div style="background:rgba(0,0,0,.2);border-radius:18px;padding:16px;margin-top:20px">
+              <div style="font-size:12px;font-weight:800;opacity:.8;text-transform:uppercase;letter-spacing:.5px">Live location</div>
+              <div style="font-size:17px;font-weight:900;margin-top:2px">Near MG Road, Sector 12</div>
+              <div style="font-size:13px;font-weight:700;opacity:.85">200m from Tuition · moving</div>
+              <div style="height:120px;background:rgba(255,255,255,.12);border-radius:12px;margin-top:12px;position:relative;overflow:hidden"><div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:30px">📍</div></div>
+            </div>
+            <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px;padding-top:20px">
+              <button style="cursor:pointer;border:none;background:#fff;color:#c22;font-weight:900;font-size:17px;font-family:inherit;padding:16px;border-radius:16px">📞 Call Aarav</button>
+              <div style="display:flex;gap:10px">
+                <button style="cursor:pointer;flex:1;border:1.5px solid rgba(255,255,255,.5);background:transparent;color:#fff;font-weight:800;font-size:14px;font-family:inherit;padding:14px;border-radius:14px">Call School</button>
+                <button onClick="{{ backSafety }}" style="cursor:pointer;flex:1;border:1.5px solid rgba(255,255,255,.5);background:rgba(255,255,255,.15);color:#fff;font-weight:800;font-size:14px;font-family:inherit;padding:14px;border-radius:14px">Acknowledge</button>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ACTIVITY / APP USAGE ============ -->
+          <sc-if value="{{ isActivity }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div onClick="{{ backSafety }}" style="cursor:pointer;font-size:14px;font-weight:800;color:#1f7a4d;margin-bottom:10px">‹ Safety</div>
+            <div style="font-size:24px;font-weight:900;color:#1c2420;margin-bottom:2px">Activity & usage</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a938e;margin-bottom:16px">Aarav · today's nightly report</div>
+
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px;margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><div style="font-size:14px;font-weight:900;color:#1c2420">Using now</div><div style="font-size:11px;font-weight:800;color:#1f7a4d;background:#e2f2ea;padding:4px 9px;border-radius:12px">● Zerebrokid</div></div>
+              <div style="font-size:12.5px;font-weight:700;color:#8a938e">Studying Arithmetic Progression · 22 min</div>
+            </div>
+
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px;margin-bottom:16px">
+              <div style="font-size:14px;font-weight:900;color:#1c2420;margin-bottom:4px">Screen time: 2h 40m</div>
+              <div style="display:flex;height:14px;border-radius:8px;overflow:hidden;margin:10px 0"><div style="width:64%;background:#1f7a4d"></div><div style="width:36%;background:#e0a54a"></div></div>
+              <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800"><span style="color:#1f7a4d">📚 Study 1h 42m</span><span style="color:#c2870f">🎮 Fun 58m</span></div>
+            </div>
+
+            <div style="font-size:12px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Apps used today</div>
+            <sc-for list="{{ apps }}" as="a" hint-placeholder-count="4">
+              <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:14px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
+                <div style="width:36px;height:36px;border-radius:10px;background:{{ a.tint }};display:flex;align-items:center;justify-content:center;font-size:18px">{{ a.emoji }}</div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:800;color:#1c2420">{{ a.name }}</div><div style="font-size:11.5px;font-weight:700;color:{{ a.tagColor }}">{{ a.tag }}</div></div>
+                <div style="font-size:14px;font-weight:900;color:#5a635e">{{ a.time }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <!-- ============ STUDY SCHEDULE ============ -->
+          <sc-if value="{{ isStudy }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1c2420;margin-bottom:2px">Study schedule</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a938e;margin-bottom:16px">Healthy structure for Aarav — not an all-day lock.</div>
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:18px;margin-bottom:14px">
+              <div style="font-size:13px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Focus window</div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:14px"><div style="text-align:center"><div style="font-size:32px;font-weight:900;color:#1f7a4d">4:00</div><div style="font-size:11px;font-weight:800;color:#8a938e">START</div></div><div style="font-size:20px;color:#c3ccc7">→</div><div style="text-align:center"><div style="font-size:32px;font-weight:900;color:#1f7a4d">7:00</div><div style="font-size:11px;font-weight:800;color:#8a938e">END</div></div></div>
+            </div>
+            <div style="background:#e2f2ea;border:1.5px solid #bfe3d0;border-radius:14px;padding:12px 14px;font-size:12.5px;font-weight:700;color:#1f7a4d;line-height:1.5;margin-bottom:14px">💡 Recommended for Class 10: 2–3 hrs/day. We won't suggest blocking all day — kids need rest and play.</div>
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:6px 18px;margin-bottom:14px">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1.5px solid #f0f3f1"><div><div style="font-size:15px;font-weight:800;color:#1c2420">Block distracting apps</div><div style="font-size:12px;font-weight:700;color:#8a938e">Only during the window</div></div><div style="width:48px;height:28px;border-radius:20px;background:#1f7a4d;position:relative"><div style="position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:#fff"></div></div></div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0"><div><div style="font-size:15px;font-weight:800;color:#1c2420">Study apps allowed</div><div style="font-size:12px;font-weight:700;color:#8a938e">Zerebrokid, Calculator, Notes</div></div><div style="font-size:13px;font-weight:800;color:#1f7a4d">Edit</div></div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:14px;padding:14px 16px;display:flex;align-items:center;gap:12px"><div style="font-size:22px">🆘</div><div style="flex:1"><div style="font-size:14px;font-weight:800;color:#1c2420">Unlock for emergencies</div><div style="font-size:12px;font-weight:700;color:#8a938e">Aarav can request; you approve instantly</div></div></div>
+          </div>
+          </sc-if>
+
+          <!-- ============ REPORTS ============ -->
+          <sc-if value="{{ isReports }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1c2420;margin-bottom:2px">Study report</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a938e;margin-bottom:16px">Aarav · this week</div>
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:18px;padding:16px;margin-bottom:16px">
+              <div style="font-size:13px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Daily study time</div>
+              <div style="display:flex;align-items:flex-end;gap:8px;height:100px">
+                <sc-for list="{{ week }}" as="d" hint-placeholder-count="7">
+                  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end"><div style="width:100%;height:{{ d.h }};background:{{ d.color }};border-radius:6px"></div><div style="font-size:10px;font-weight:800;color:#a3aca7">{{ d.day }}</div></div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="background:linear-gradient(135deg,#fdf3e6,#fff);border:1.5px solid #f3ddba;border-radius:16px;padding:16px;margin-bottom:16px">
+              <div style="font-size:14px;font-weight:900;color:#9a6a1a;margin-bottom:4px">💡 Tuition needed?</div>
+              <div style="font-size:13px;font-weight:700;color:#7a5a2a;line-height:1.4">Aarav is strong everywhere except <b>decreasing APs</b>. A short revision — no outside tuition — should cover it.</div>
+            </div>
+            <div style="font-size:12px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Quiz results feed</div>
+            <sc-for list="{{ quizFeed }}" as="q" hint-placeholder-count="3">
+              <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:14px;padding:13px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px">
+                <div style="width:44px;height:44px;border-radius:12px;background:{{ q.tint }};display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:900;color:{{ q.scoreColor }}">{{ q.score }}</div>
+                <div style="flex:1"><div style="font-size:14.5px;font-weight:800;color:#1c2420">{{ q.topic }}</div><div style="font-size:12px;font-weight:700;color:#8a938e">{{ q.meta }}</div></div>
+                <div style="font-size:18px">{{ q.icon }}</div>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <!-- ============ PAY ============ -->
+          <sc-if value="{{ isPay }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div style="font-size:24px;font-weight:900;color:#1c2420;margin-bottom:2px">Subscription</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a938e;margin-bottom:16px">Holy Bless School · via Zerebrokid</div>
+            <div style="background:linear-gradient(135deg,#1f7a4d,#279a60);border-radius:22px;padding:20px;color:#fff;margin-bottom:16px">
+              <div style="display:flex;justify-content:space-between;align-items:baseline"><div style="font-size:38px;font-weight:900;line-height:1">₹100<span style="font-size:15px;font-weight:700;opacity:.85">/month</span></div><div style="font-size:12px;font-weight:800;background:rgba(255,255,255,.2);padding:5px 10px;border-radius:14px">Active</div></div>
+              <div style="font-size:13px;font-weight:700;opacity:.9;margin-top:8px">Covers Aarav · renews 1 Aug 2026</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:16px;padding:16px;margin-bottom:16px">
+              <div style="font-size:13px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Payment method</div>
+              <div style="display:flex;align-items:center;gap:12px"><div style="width:44px;height:44px;border-radius:12px;background:#eef1ef;display:flex;align-items:center;justify-content:center;font-size:20px">📱</div><div style="flex:1"><div style="font-size:15px;font-weight:800;color:#1c2420">UPI · priya@okhdfc</div><div style="font-size:12px;font-weight:700;color:#1f7a4d">Auto-pay on</div></div><div style="font-size:13px;font-weight:800;color:#1f7a4d">Change</div></div>
+            </div>
+            <div style="font-size:12px;font-weight:900;color:#8a938e;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Billing history</div>
+            <sc-for list="{{ bills }}" as="b" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 2px;border-bottom:1.5px solid #eef1ef"><div><div style="font-size:14px;font-weight:800;color:#1c2420">{{ b.month }}</div><div style="font-size:11.5px;font-weight:700;color:#8a938e">{{ b.date }}</div></div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px;font-weight:900;color:#1c2420">₹100</span><span style="font-size:11px;font-weight:800;color:#1f7a4d;background:#e2f2ea;padding:3px 8px;border-radius:10px">Paid</span></div></div>
+            </sc-for>
+            <div onClick="{{ goConsent }}" style="cursor:pointer;text-align:center;font-size:12.5px;font-weight:800;color:#8a938e;margin-top:16px">View privacy & consent →</div>
+          </div>
+          </sc-if>
+
+          <!-- ============ CONSENT ============ -->
+          <sc-if value="{{ isConsent }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:6px 20px 22px">
+            <div onClick="{{ goPay }}" style="cursor:pointer;font-size:14px;font-weight:800;color:#1f7a4d;margin-bottom:12px">‹ Back</div>
+            <div style="font-size:24px;font-weight:900;color:#1c2420;margin-bottom:2px">Your consent</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a938e;margin-bottom:18px">Clear and honest — you control what's shared.</div>
+            <sc-for list="{{ consents }}" as="c" hint-placeholder-count="3">
+              <div style="background:#fff;border:1.5px solid #e6ebe8;border-radius:16px;padding:16px;margin-bottom:12px">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px"><div style="flex:1"><div style="font-size:15px;font-weight:900;color:#1c2420">{{ c.title }}</div><div style="font-size:12.5px;font-weight:600;color:#8a938e;line-height:1.4;margin-top:3px">{{ c.desc }}</div></div><div style="width:48px;height:28px;border-radius:20px;background:{{ c.bg }};position:relative;flex:none"><div style="position:absolute;top:3px;{{ c.pos }}:3px;width:22px;height:22px;border-radius:50%;background:#fff"></div></div></div>
+              </div>
+            </sc-for>
+            <div style="font-size:12px;font-weight:700;color:#a3aca7;line-height:1.5;text-align:center;margin-top:8px">You can change these any time. Data is used only for your child's safety and learning — never sold.</div>
+          </div>
+          </sc-if>
+
+        </div>
+
+        <!-- BOTTOM TABS -->
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none;display:flex;justify-content:space-around;align-items:center;padding:10px 4px 22px;background:#fff;border-top:1.5px solid #e6ebe8">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="5">
+            <div onClick="{{ tb.go }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;color:{{ tb.color }}">
+              <div style="font-size:19px">{{ tb.icon }}</div>
+              <div style="font-size:10.5px;font-weight:800">{{ tb.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;color:#8a938e;letter-spacing:.3px">Zerebrokid · Parent</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { screen:'home', tab:'home' };
+  go(screen, tab){ this.setState(s=>({ screen, tab: tab||s.tab })); this._top(); }
+  nav(screen){ this.setState({ screen }); this._top(); }
+  _top(){ setTimeout(()=>{ const el=document.querySelector('.pt-scroll'); if(el) el.scrollTop=0; },0); }
+
+  renderVals(){
+    const s=this.state;
+    const mainTabs=['home','study','safety','reports','pay'];
+    const showTabs=mainTabs.includes(s.screen);
+    const statusColor = (s.screen==='sos') ? '#fff' : '#1c2420';
+
+    const mk=(id,icon,label)=>({ icon,label, go:()=>this.go(id,id), color: s.tab===id ? '#1f7a4d':'#a3aca7' });
+    const tabs=[ mk('home','🏠','Home'), mk('study','🕐','Study'), mk('safety','🛡️','Safety'), mk('reports','📈','Reports'), mk('pay','💳','Pay') ];
+
+    const apps=[
+      { emoji:'📘', name:'Zerebrokid', tag:'Learning', tagColor:'#1f7a4d', time:'1h 42m', tint:'#e5e2fb' },
+      { emoji:'📺', name:'YouTube Kids', tag:'Entertainment', tagColor:'#c2870f', time:'34m', tint:'#fdeaea' },
+      { emoji:'🎮', name:'Chess', tag:'Games', tagColor:'#c2870f', time:'18m', tint:'#e6f0fb' },
+      { emoji:'💬', name:'Messages', tag:'Communication', tagColor:'#8a938e', time:'6m', tint:'#eef1ef' },
+    ];
+    const week=[
+      { day:'M', h:'55%', color:'#bfe3d0' },{ day:'T', h:'80%', color:'#1f7a4d' },{ day:'W', h:'40%', color:'#bfe3d0' },
+      { day:'T', h:'90%', color:'#1f7a4d' },{ day:'F', h:'65%', color:'#bfe3d0' },{ day:'S', h:'30%', color:'#e0e6e2' },{ day:'S', h:'20%', color:'#e0e6e2' },
+    ];
+    const quizFeed=[
+      { score:'8/10', topic:'Arithmetic Progression', meta:'Maths · today 5:40 PM', icon:'✅', tint:'#e2f2ea', scoreColor:'#1f7a4d' },
+      { score:'6/10', topic:'States of Matter', meta:'Science · today 6:10 PM', icon:'⚠️', tint:'#fbf1e4', scoreColor:'#c2870f' },
+      { score:'9/10', topic:'Similar Triangles', meta:'Maths · Mon 4:30 PM', icon:'✅', tint:'#e2f2ea', scoreColor:'#1f7a4d' },
+    ];
+    const bills=[
+      { month:'July 2026', date:'1 Jul · UPI', },{ month:'June 2026', date:'1 Jun · UPI' },{ month:'May 2026', date:'1 May · UPI' },
+    ];
+    const consents=[
+      { title:'Live location', desc:'See where your child is, in real time and last-known when offline.', bg:'#1f7a4d', pos:'right' },
+      { title:'Activity & app usage', desc:'Nightly report of screen time and apps used.', bg:'#1f7a4d', pos:'right' },
+      { title:'Share results with teacher', desc:'Quiz scores visible to the class teacher.', bg:'#1f7a4d', pos:'right' },
+    ];
+
+    return {
+      isHome:s.screen==='home', isSafety:s.screen==='safety', isSos:s.screen==='sos',
+      isActivity:s.screen==='activity', isStudy:s.screen==='study', isReports:s.screen==='reports',
+      isPay:s.screen==='pay', isConsent:s.screen==='consent',
+      showTabs, statusColor, tabs, apps, week, quizFeed, bills, consents,
+      goReports:()=>this.go('reports','reports'),
+      goActivity:()=>this.nav('activity'),
+      goSafety:()=>this.go('safety','safety'),
+      goSos:()=>this.nav('sos'),
+      backSafety:()=>this.go('safety','safety'),
+      goConsent:()=>this.nav('consent'),
+      goPay:()=>this.go('pay','pay'),
+    };
+  }
+}
+</script>
+</body>
+</html>

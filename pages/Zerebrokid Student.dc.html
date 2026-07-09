@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e7f5;font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#4C3AE3}a:hover{color:#3a2ec2}
+  .zk-scroll{overflow-y:auto;scrollbar-width:none}
+  .zk-scroll::-webkit-scrollbar{display:none}
+  @keyframes zkfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes zkpop{0%{transform:scale(.7);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  @keyframes zkspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px;gap:48px;flex-wrap:wrap;background:radial-gradient(circle at 30% 20%,#efedfb,#e4e1f2)">
+
+  <div style="display:flex;flex-direction:column;align-items:center;gap:14px">
+    <div style="position:relative;width:392px;height:812px;background:#0e0b24;border-radius:52px;padding:11px;box-shadow:0 40px 80px -20px rgba(35,25,90,.5),0 0 0 2px rgba(255,255,255,.06) inset">
+      <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:150px;height:30px;background:#0e0b24;border-radius:0 0 20px 20px;z-index:50"></div>
+      <div style="position:relative;width:100%;height:100%;background:#F6F5FB;border-radius:42px;overflow:hidden;display:flex;flex-direction:column">
+
+        <!-- status bar -->
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 26px 6px;font-size:14px;font-weight:800;color:{{ statusColor }};flex:none">
+          <span>9:41</span>
+          <span style="display:flex;gap:6px;align-items:center;font-size:12px">
+            <span>5G</span>
+            <span style="display:inline-block;width:22px;height:11px;border:1.6px solid currentColor;border-radius:3px;position:relative"><span style="position:absolute;inset:1.5px;right:5px;background:currentColor;border-radius:1px"></span></span>
+          </span>
+        </div>
+
+        <!-- SCREEN AREA -->
+        <div class="zk-scroll" style="flex:1;position:relative">
+
+          <!-- ============ TODAY ============ -->
+          <sc-if value="{{ isToday }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:8px 20px 24px">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:#8a86a6">Tuesday, 9 July</div>
+                <div style="font-size:26px;font-weight:900;color:#1a1730;letter-spacing:-.5px">Hi, Aarav 👋</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:6px;background:#fff;border-radius:16px;padding:8px 12px;box-shadow:0 4px 14px rgba(35,25,90,.08)">
+                <span style="font-size:18px">🔥</span>
+                <span style="font-weight:900;color:#FF6B3D;font-size:17px">12</span>
+              </div>
+            </div>
+
+            <!-- daily goal ring card -->
+            <div style="display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,#4C3AE3,#6E5BF2);border-radius:24px;padding:20px 22px;color:#fff;margin-bottom:22px;box-shadow:0 16px 30px -10px rgba(76,58,227,.5)">
+              <div style="position:relative;width:76px;height:76px;flex:none">
+                <svg width="76" height="76" viewBox="0 0 76 76" style="transform:rotate(-90deg)">
+                  <circle cx="38" cy="38" r="32" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="9"></circle>
+                  <circle cx="38" cy="38" r="32" fill="none" stroke="#FFC24B" stroke-width="9" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="70"></circle>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center">
+                  <div style="font-size:19px;font-weight:900;line-height:1">65%</div>
+                </div>
+              </div>
+              <div>
+                <div style="font-size:18px;font-weight:800;margin-bottom:3px">Daily goal</div>
+                <div style="font-size:13.5px;font-weight:600;opacity:.85;line-height:1.35">1 hr 18 min of 2 hrs done.<br>Finish 1 more topic to hit your goal.</div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <div style="font-size:19px;font-weight:900;color:#1a1730">Today's topics</div>
+              <div style="font-size:12.5px;font-weight:800;color:#4C3AE3;background:#ECE9FE;padding:5px 10px;border-radius:20px">From your teacher</div>
+            </div>
+
+            <sc-for list="{{ topics }}" as="t" hint-placeholder-count="2">
+              <div onClick="{{ t.open }}" style="cursor:pointer;background:#fff;border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:0 8px 22px rgba(35,25,90,.07);border:1.5px solid #f0eefb">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <div style="width:54px;height:54px;border-radius:16px;background:{{ t.tint }};display:flex;align-items:center;justify-content:center;font-size:26px;flex:none">{{ t.emoji }}</div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font-size:12px;font-weight:800;color:{{ t.subjColor }};text-transform:uppercase;letter-spacing:.6px">{{ t.subject }}</div>
+                    <div style="font-size:17px;font-weight:900;color:#1a1730;line-height:1.2">{{ t.title }}</div>
+                  </div>
+                  <div style="width:32px;height:32px;border-radius:50%;background:#4C3AE3;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900;flex:none">›</div>
+                </div>
+                <div style="margin-top:14px;display:flex;align-items:center;gap:10px">
+                  <div style="flex:1;height:8px;background:#eeecf7;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ t.pct }};background:linear-gradient(90deg,#4C3AE3,#8a7bff);border-radius:8px"></div></div>
+                  <div style="font-size:12px;font-weight:800;color:#8a86a6">{{ t.progress }}</div>
+                </div>
+                <div style="margin-top:12px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#a09cbb">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#22c07a;display:inline-block"></span>
+                  {{ t.assigned }}
+                </div>
+              </div>
+            </sc-for>
+
+            <div style="margin-top:6px;background:#FFF4EC;border:1.5px solid #ffe1cc;border-radius:20px;padding:16px 18px;display:flex;gap:12px;align-items:center">
+              <div style="font-size:26px">🎁</div>
+              <div style="flex:1">
+                <div style="font-size:15px;font-weight:900;color:#c2500f">Finish today's loop</div>
+                <div style="font-size:12.5px;font-weight:700;color:#d97a3f">Unlock a new game, memes & funny videos.</div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ TOPIC OVERVIEW (7 sections) ============ -->
+          <sc-if value="{{ isTopic }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="background:{{ topic.grad }};padding:14px 20px 24px;color:#fff">
+              <div onClick="{{ backToday }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;opacity:.92;margin-bottom:14px">‹ Today</div>
+              <div style="font-size:12.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;opacity:.85">{{ topic.subject }}</div>
+              <div style="font-size:27px;font-weight:900;line-height:1.1;margin:2px 0 14px">{{ topic.title }}</div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <div style="flex:1;height:9px;background:rgba(255,255,255,.25);border-radius:9px;overflow:hidden"><div style="height:100%;width:{{ topic.pct }};background:#FFC24B;border-radius:9px"></div></div>
+                <div style="font-size:13px;font-weight:900">{{ topic.progress }}</div>
+              </div>
+            </div>
+            <div style="padding:20px 20px 26px">
+              <div style="font-size:13px;font-weight:900;color:#8a86a6;text-transform:uppercase;letter-spacing:.6px;margin-bottom:14px">Learning path</div>
+              <div style="position:relative">
+                <div style="position:absolute;left:24px;top:14px;bottom:40px;width:3px;background:#eae7f6"></div>
+                <sc-for list="{{ topic.sections }}" as="sec" hint-placeholder-count="7">
+                  <div onClick="{{ sec.open }}" style="cursor:pointer;position:relative;display:flex;gap:16px;margin-bottom:12px">
+                    <div style="width:50px;height:50px;border-radius:16px;background:{{ sec.dotBg }};color:{{ sec.dotColor }};display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;flex:none;z-index:2;box-shadow:0 4px 12px rgba(35,25,90,.1)">{{ sec.mark }}</div>
+                    <div style="flex:1;background:#fff;border-radius:18px;padding:14px 16px;box-shadow:0 6px 16px rgba(35,25,90,.06);border:1.5px solid {{ sec.border }}">
+                      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+                        <div style="font-size:15.5px;font-weight:900;color:#1a1730;line-height:1.2">{{ sec.title }}</div>
+                        <div style="font-size:11px;font-weight:800;color:{{ sec.tagColor }};background:{{ sec.tagBg }};padding:3px 8px;border-radius:12px;flex:none">{{ sec.tag }}</div>
+                      </div>
+                      <div style="font-size:12.5px;font-weight:600;color:#8a86a6;margin-top:3px;line-height:1.35">{{ sec.desc }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+
+                <div onClick="{{ openQuiz }}" style="cursor:pointer;position:relative;display:flex;gap:16px;margin-top:6px">
+                  <div style="width:50px;height:50px;border-radius:16px;background:#FF6B3D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none;z-index:2;box-shadow:0 6px 16px rgba(255,107,61,.4)">🏁</div>
+                  <div style="flex:1;background:linear-gradient(135deg,#1a1730,#332c56);border-radius:18px;padding:16px;color:#fff">
+                    <div style="font-size:16px;font-weight:900">Quiz</div>
+                    <div style="font-size:12.5px;font-weight:600;opacity:.8">Unlocks after all 7 sections · 10 questions</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ DETAILED EXPLANATION READER ============ -->
+          <sc-if value="{{ isRead }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:14px 22px 30px">
+            <div onClick="{{ backTopic }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:16px">‹ {{ topic.title }}</div>
+            <div style="font-size:12px;font-weight:900;color:#4C3AE3;letter-spacing:.6px;text-transform:uppercase">Section 1 · Explained simply</div>
+            <div style="font-size:25px;font-weight:900;color:#1a1730;line-height:1.15;margin:4px 0 16px">What is an Arithmetic Progression?</div>
+            <p style="font-size:15.5px;font-weight:600;color:#3d3958;line-height:1.6;margin:0 0 16px">An <b>Arithmetic Progression (AP)</b> is a list of numbers where you add the <b>same fixed amount</b> each time to get the next number. That fixed amount is called the <b>common difference</b>, written as <i>d</i>.</p>
+            <div style="background:#F3F1FD;border-radius:18px;padding:16px 18px;margin-bottom:16px">
+              <div style="font-size:12px;font-weight:900;color:#4C3AE3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px">Worked example</div>
+              <div style="font-size:16px;font-weight:800;color:#1a1730;line-height:1.7">2, 5, 8, 11, 14, …<br><span style="font-size:13.5px;font-weight:700;color:#6b6790">Start = 2, and each time we add 3. So <b>d = 3</b>.</span></div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #eae7f6;border-radius:18px;padding:16px 18px;margin-bottom:16px">
+              <div style="font-size:13.5px;font-weight:800;color:#8a86a6;margin-bottom:6px">The nth term formula</div>
+              <div style="font-size:22px;font-weight:900;color:#1a1730;text-align:center;padding:8px 0">aₙ = a + (n − 1)d</div>
+              <div style="font-size:13px;font-weight:600;color:#6b6790;line-height:1.5"><b>a</b> = first term · <b>n</b> = position · <b>d</b> = common difference.</div>
+            </div>
+            <p style="font-size:15.5px;font-weight:600;color:#3d3958;line-height:1.6;margin:0 0 22px">To find the 10th term of 2, 5, 8…: a = 2, d = 3, n = 10 → aₙ = 2 + (10−1)×3 = <b>29</b>.</p>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px">
+              <button style="cursor:pointer;border:none;background:#ECE9FE;color:#4C3AE3;font-weight:800;font-size:13.5px;font-family:inherit;padding:12px 16px;border-radius:14px">🔁 Re-explain differently</button>
+              <button onClick="{{ openCuriosity }}" style="cursor:pointer;border:none;background:#FFF1D6;color:#c2870f;font-weight:800;font-size:13.5px;font-family:inherit;padding:12px 16px;border-radius:14px">💡 But why does it work?</button>
+            </div>
+            <button onClick="{{ backTopic }}" style="cursor:pointer;width:100%;border:none;background:#4C3AE3;color:#fff;font-weight:900;font-size:16px;font-family:inherit;padding:16px;border-radius:16px;box-shadow:0 10px 22px -6px rgba(76,58,227,.5)">Mark complete → next section</button>
+          </div>
+          </sc-if>
+
+          <!-- ============ CURIOSITY / WHY ============ -->
+          <sc-if value="{{ isCuriosity }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="background:linear-gradient(150deg,#FFB53D,#FF8A3D);padding:16px 22px 30px;color:#fff;position:relative;overflow:hidden">
+              <div style="position:absolute;right:-20px;top:-20px;font-size:150px;opacity:.18">💡</div>
+              <div onClick="{{ backTopic }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;opacity:.95;margin-bottom:16px">‹ Back</div>
+              <div style="font-size:12.5px;font-weight:900;letter-spacing:.8px;text-transform:uppercase;opacity:.9">Curiosity · Section 4</div>
+              <div style="font-size:25px;font-weight:900;line-height:1.15;margin-top:4px;position:relative">Why is the area of a rectangle l × b, not l + b?</div>
+            </div>
+            <div style="padding:22px">
+              <div style="font-size:15.5px;font-weight:700;color:#3d3958;line-height:1.6;margin-bottom:18px">Because area measures how many <b>unit squares</b> fit inside — and multiplying counts them, adding doesn't.</div>
+              <div style="background:#fff;border:1.5px solid #eae7f6;border-radius:20px;padding:18px;margin-bottom:18px;box-shadow:0 8px 20px rgba(35,25,90,.06)">
+                <div style="font-size:12px;font-weight:900;color:#FF8A3D;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">See it visually</div>
+                <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:5px;max-width:220px;margin:0 auto 10px">
+                  <sc-for list="{{ grid15 }}" as="c" hint-placeholder-count="15">
+                    <div style="aspect-ratio:1;background:#FFE6C7;border:1.5px solid #FFB53D;border-radius:6px"></div>
+                  </sc-for>
+                </div>
+                <div style="text-align:center;font-size:13.5px;font-weight:700;color:#6b6790;line-height:1.5">A 5 × 3 rectangle = <b>length (5) added breadth-times (3)</b> = 15 squares.<br>That's exactly what l × b means.</div>
+              </div>
+              <div onClick="{{ noop }}" style="cursor:pointer;background:#1a1730;border-radius:18px;padding:16px 18px;display:flex;gap:14px;align-items:center;color:#fff;margin-bottom:12px">
+                <div style="width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px;flex:none">▶</div>
+                <div><div style="font-size:15px;font-weight:900">Watch: the intuition in 90 sec</div><div style="font-size:12.5px;font-weight:600;opacity:.75">Animated explainer</div></div>
+              </div>
+              <button onClick="{{ openPanel }}" style="cursor:pointer;width:100%;border:none;background:linear-gradient(135deg,#4C3AE3,#6E5BF2);color:#fff;font-weight:900;font-size:15.5px;font-family:inherit;padding:16px;border-radius:16px">Go deeper: WHY · WHAT IF · NOW WHAT →</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ WHY / WHAT IF / NOW WHAT ============ -->
+          <sc-if value="{{ isPanel }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:14px 20px 30px">
+            <div onClick="{{ backTopic }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:14px">‹ Back</div>
+            <div style="font-size:12px;font-weight:900;color:#4C3AE3;letter-spacing:.7px;text-transform:uppercase">Think like a topper</div>
+            <div style="font-size:24px;font-weight:900;color:#1a1730;line-height:1.15;margin:3px 0 18px">The 3 questions that build real understanding</div>
+
+            <div style="border-radius:20px;padding:18px;margin-bottom:14px;background:linear-gradient(135deg,#4C3AE3,#6E5BF2);color:#fff;box-shadow:0 12px 26px -8px rgba(76,58,227,.45)">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900">1</div><div style="font-size:17px;font-weight:900;letter-spacing:.5px">WHY</div></div>
+              <div style="font-size:14px;font-weight:600;line-height:1.55;opacity:.95">An AP grows by a fixed step, so the nth term is just the start plus that step taken (n−1) times. <b>The formula is a shortcut for counting steps</b>, not a rule to memorise.</div>
+            </div>
+
+            <div style="border-radius:20px;padding:18px;margin-bottom:14px;background:#FFF4EC;border:1.5px solid #ffd9bd">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:34px;height:34px;border-radius:11px;background:#FF8A3D;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900">2</div><div style="font-size:17px;font-weight:900;color:#c2500f;letter-spacing:.5px">WHAT IF</div></div>
+              <ul style="margin:0;padding-left:18px;font-size:14px;font-weight:700;color:#a1521f;line-height:1.7">
+                <li>What if d = 0? Every term is the same — still a valid AP.</li>
+                <li>What if n comes out a decimal? The term simply isn't in the sequence.</li>
+                <li>What if the terms decrease? Then d is negative — the maths still holds.</li>
+              </ul>
+            </div>
+
+            <div style="border-radius:20px;padding:18px;margin-bottom:18px;background:#EAF8F0;border:1.5px solid #bfe9d1">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><div style="width:34px;height:34px;border-radius:11px;background:#22c07a;color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:900">3</div><div style="font-size:17px;font-weight:900;color:#12855a;letter-spacing:.5px">NOW WHAT</div></div>
+              <div style="font-size:14px;font-weight:700;color:#12855a;line-height:1.55">When an answer looks weird in an exam, <b>pause and ask: is this possible, and why?</b> A negative number of terms or a decimal position is a signal to re-check — not to panic.</div>
+            </div>
+
+            <div onClick="{{ toggleStory }}" style="cursor:pointer;background:#fff;border:1.5px solid #eae7f6;border-radius:18px;padding:16px 18px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <div style="font-size:14.5px;font-weight:900;color:#1a1730">📖 The two students' story</div>
+                <div style="font-size:18px;font-weight:900;color:#4C3AE3">{{ storyChevron }}</div>
+              </div>
+              <sc-if value="{{ storyOpen }}" hint-placeholder-val="{{ false }}">
+                <div style="font-size:13.5px;font-weight:600;color:#6b6790;line-height:1.6;margin-top:12px">Two students solve the same AP problem and both get n = −4. One writes it down and moves on. The other pauses: "You can't have a negative number of terms." She spots her sign error, fixes it, and gets it right. <b>Same knowledge — different habit of mind.</b></div>
+              </sc-if>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ PRACTICE ============ -->
+          <sc-if value="{{ isPractice }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:14px 20px 30px">
+            <div onClick="{{ backTopic }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:16px">‹ Back</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <div style="font-size:12px;font-weight:900;color:#8a86a6;text-transform:uppercase;letter-spacing:.6px">Practice · Q3 of 6</div>
+              <div style="font-size:11px;font-weight:800;color:#e0752a;background:#FFF0E4;padding:4px 10px;border-radius:12px">Medium</div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #eae7f6;border-radius:20px;padding:20px;box-shadow:0 8px 20px rgba(35,25,90,.06)">
+              <div style="font-size:18px;font-weight:800;color:#1a1730;line-height:1.4;margin-bottom:18px">Find the 15th term of the AP: 3, 7, 11, 15, …</div>
+              <sc-for list="{{ practiceOpts }}" as="o" hint-placeholder-count="4">
+                <div onClick="{{ o.pick }}" style="cursor:pointer;border:2px solid {{ o.border }};background:{{ o.bg }};color:{{ o.color }};border-radius:14px;padding:14px 16px;margin-bottom:10px;font-size:15.5px;font-weight:800;display:flex;justify-content:space-between;align-items:center">
+                  <span>{{ o.text }}</span><span style="font-size:16px">{{ o.icon }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <sc-if value="{{ practiceAnswered }}" hint-placeholder-val="{{ false }}">
+              <div style="background:#EAF8F0;border:1.5px solid #bfe9d1;border-radius:16px;padding:16px;margin-top:14px">
+                <div style="font-size:14px;font-weight:900;color:#12855a;margin-bottom:6px">✓ Correct! Step-by-step:</div>
+                <div style="font-size:13.5px;font-weight:700;color:#137a53;line-height:1.6">a = 3, d = 4, n = 15 → aₙ = 3 + (15−1)×4 = 3 + 56 = <b>59</b></div>
+              </div>
+            </sc-if>
+          </div>
+          </sc-if>
+
+          <!-- ============ QUIZ ============ -->
+          <sc-if value="{{ isQuiz }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:14px 20px 30px">
+            <div onClick="{{ backTopic }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:14px">‹ Back</div>
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+              <div style="font-size:15px;font-weight:900;color:#1a1730">Question 5 / 10</div>
+              <div style="display:flex;align-items:center;gap:6px;background:#FFF0E4;color:#e0752a;font-weight:900;font-size:13px;padding:5px 11px;border-radius:20px">⏱ 04:12</div>
+            </div>
+            <div style="height:8px;background:#eeecf7;border-radius:8px;overflow:hidden;margin-bottom:20px"><div style="height:100%;width:50%;background:linear-gradient(90deg,#4C3AE3,#8a7bff);border-radius:8px"></div></div>
+            <div style="font-size:19px;font-weight:800;color:#1a1730;line-height:1.4;margin-bottom:20px">Which term of the AP 5, 8, 11, … is equal to 47?</div>
+            <sc-for list="{{ quizOpts }}" as="o" hint-placeholder-count="4">
+              <div onClick="{{ openResult }}" style="cursor:pointer;border:2px solid #eae7f6;background:#fff;border-radius:14px;padding:15px 16px;margin-bottom:11px;font-size:16px;font-weight:800;color:#1a1730;display:flex;gap:12px;align-items:center">
+                <span style="width:26px;height:26px;border-radius:8px;background:#f2f0fb;color:#4C3AE3;display:flex;align-items:center;justify-content:center;font-size:13px;flex:none">{{ o.k }}</span>{{ o.text }}
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <!-- ============ RESULT ============ -->
+          <sc-if value="{{ isResult }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="background:linear-gradient(160deg,#4C3AE3,#6E5BF2);padding:30px 24px 34px;color:#fff;text-align:center">
+              <div style="font-size:56px;animation:zkpop .5s ease">🎉</div>
+              <div style="font-size:15px;font-weight:800;opacity:.9;margin-top:6px">Quiz complete</div>
+              <div style="font-size:46px;font-weight:900;line-height:1;margin:8px 0 2px">8 / 10</div>
+              <div style="font-size:14px;font-weight:700;opacity:.85">Great work — you're ready for the exam.</div>
+            </div>
+            <div style="padding:22px">
+              <div style="font-size:13px;font-weight:900;color:#8a86a6;text-transform:uppercase;letter-spacing:.6px;margin-bottom:12px">Concept mastery</div>
+              <sc-for list="{{ mastery }}" as="m" hint-placeholder-count="4">
+                <div style="margin-bottom:14px">
+                  <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;color:#3d3958;margin-bottom:5px"><span>{{ m.name }}</span><span style="color:{{ m.color }}">{{ m.pct }}</span></div>
+                  <div style="height:8px;background:#eeecf7;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ m.pct }};background:{{ m.color }};border-radius:8px"></div></div>
+                </div>
+              </sc-for>
+              <div style="background:#FFF4EC;border:1.5px solid #ffd9bd;border-radius:16px;padding:14px 16px;margin:8px 0 18px">
+                <div style="font-size:14px;font-weight:900;color:#c2500f">📌 Revise: nth-term with negative d</div>
+                <div style="font-size:12.5px;font-weight:700;color:#d97a3f">You missed 2 questions on decreasing APs.</div>
+              </div>
+              <div style="display:flex;gap:8px;align-items:center;font-size:12.5px;font-weight:700;color:#8a86a6;margin-bottom:16px"><span>🔒</span> Result shared with your parent and teacher.</div>
+              <button onClick="{{ openRewards }}" style="cursor:pointer;width:100%;border:none;background:#FF6B3D;color:#fff;font-weight:900;font-size:16px;font-family:inherit;padding:16px;border-radius:16px;box-shadow:0 10px 22px -6px rgba(255,107,61,.5)">Claim today's rewards 🎁</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ REWARDS ============ -->
+          <sc-if value="{{ isRewards }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:14px 20px 30px;text-align:center">
+            <div onClick="{{ backToday }}" style="cursor:pointer;text-align:left;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:800;color:#4C3AE3;margin-bottom:6px">‹ Today</div>
+            <div style="font-size:52px;animation:zkfloat 3s ease-in-out infinite">🏆</div>
+            <div style="font-size:24px;font-weight:900;color:#1a1730;margin-top:4px">Loop complete!</div>
+            <div style="font-size:14px;font-weight:700;color:#8a86a6;margin-bottom:20px">Day 12 streak locked in 🔥</div>
+            <sc-for list="{{ rewards }}" as="r" hint-placeholder-count="3">
+              <div style="display:flex;align-items:center;gap:14px;background:#fff;border:1.5px solid #f0eefb;border-radius:18px;padding:14px 16px;margin-bottom:12px;text-align:left;box-shadow:0 6px 16px rgba(35,25,90,.06)">
+                <div style="width:50px;height:50px;border-radius:14px;background:{{ r.tint }};display:flex;align-items:center;justify-content:center;font-size:24px;flex:none">{{ r.emoji }}</div>
+                <div style="flex:1"><div style="font-size:15.5px;font-weight:900;color:#1a1730">{{ r.title }}</div><div style="font-size:12.5px;font-weight:700;color:#8a86a6">{{ r.sub }}</div></div>
+                <div style="font-size:12px;font-weight:900;color:#22c07a;background:#EAF8F0;padding:5px 10px;border-radius:12px">NEW</div>
+              </div>
+            </sc-for>
+            <div style="display:flex;gap:12px;justify-content:center;margin-top:8px">
+              <div style="flex:1;background:#F3F1FD;border-radius:16px;padding:14px"><div style="font-size:24px;font-weight:900;color:#4C3AE3">+120</div><div style="font-size:12px;font-weight:800;color:#8a86a6">coins</div></div>
+              <div style="flex:1;background:#FFF1D6;border-radius:16px;padding:14px"><div style="font-size:24px;font-weight:900;color:#c2870f">🧠 Curious</div><div style="font-size:12px;font-weight:800;color:#c2870f">new badge</div></div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ FOCUS SETUP ============ -->
+          <sc-if value="{{ isFocus }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:8px 20px 24px">
+            <div style="font-size:26px;font-weight:900;color:#1a1730;margin-bottom:4px">Focus Mode 🎯</div>
+            <div style="font-size:14px;font-weight:700;color:#8a86a6;line-height:1.4;margin-bottom:20px">Your own study window. Distracting apps rest so you can go deep — you can leave any time.</div>
+            <div style="background:#fff;border:1.5px solid #f0eefb;border-radius:20px;padding:20px;box-shadow:0 8px 20px rgba(35,25,90,.06);margin-bottom:16px">
+              <div style="font-size:13px;font-weight:900;color:#8a86a6;text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px">Study window</div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:14px">
+                <div style="text-align:center"><div style="font-size:34px;font-weight:900;color:#4C3AE3">4:00</div><div style="font-size:12px;font-weight:800;color:#8a86a6">START</div></div>
+                <div style="font-size:22px;color:#c9c5df">→</div>
+                <div style="text-align:center"><div style="font-size:34px;font-weight:900;color:#4C3AE3">7:00</div><div style="font-size:12px;font-weight:800;color:#8a86a6">END</div></div>
+              </div>
+            </div>
+            <div style="background:#fff;border:1.5px solid #f0eefb;border-radius:20px;padding:6px 18px;box-shadow:0 8px 20px rgba(35,25,90,.06);margin-bottom:16px">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1.5px solid #f5f3fc">
+                <div><div style="font-size:15px;font-weight:800;color:#1a1730">Block distracting apps</div><div style="font-size:12px;font-weight:700;color:#8a86a6">Games, social, video</div></div>
+                <div style="width:48px;height:28px;border-radius:20px;background:#4C3AE3;position:relative;flex:none"><div style="position:absolute;top:3px;right:3px;width:22px;height:22px;border-radius:50%;background:#fff"></div></div>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 0">
+                <div><div style="font-size:15px;font-weight:800;color:#1a1730">Allowed apps</div><div style="font-size:12px;font-weight:700;color:#8a86a6">Zerebrokid, Calculator, Notes</div></div>
+                <div style="font-size:13px;font-weight:800;color:#4C3AE3">Edit</div>
+              </div>
+            </div>
+            <div style="background:#EAF8F0;border:1.5px solid #bfe9d1;border-radius:14px;padding:13px 16px;font-size:12.5px;font-weight:700;color:#12855a;line-height:1.5;margin-bottom:18px">🆓 You can tap "Take a break" during any session. Focus is your tool — never a lock-in.</div>
+            <button onClick="{{ startFocus }}" style="cursor:pointer;width:100%;border:none;background:#4C3AE3;color:#fff;font-weight:900;font-size:16px;font-family:inherit;padding:16px;border-radius:16px;box-shadow:0 10px 22px -6px rgba(76,58,227,.5)">Start focusing</button>
+          </div>
+          </sc-if>
+
+          <!-- ============ FOCUS ACTIVE (dark) ============ -->
+          <sc-if value="{{ isFocusActive }}" hint-placeholder-val="{{ true }}">
+          <div style="min-height:100%;background:radial-gradient(circle at 50% 30%,#241b4f,#12102a);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center">
+            <div style="font-size:12.5px;font-weight:900;color:#8f86d6;text-transform:uppercase;letter-spacing:1.5px">In focus · distraction-free</div>
+            <div style="position:relative;width:220px;height:220px;margin:24px 0">
+              <svg width="220" height="220" viewBox="0 0 220 220" style="transform:rotate(-90deg)">
+                <circle cx="110" cy="110" r="96" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="14"></circle>
+                <circle cx="110" cy="110" r="96" fill="none" stroke="url(#fg)" stroke-width="14" stroke-linecap="round" stroke-dasharray="603" stroke-dashoffset="180"></circle>
+                <defs><linearGradient id="fg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a7bff"></stop><stop offset="1" stop-color="#FFC24B"></stop></linearGradient></defs>
+              </svg>
+              <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+                <div style="font-size:46px;font-weight:900;line-height:1">1:58</div>
+                <div style="font-size:13px;font-weight:700;color:#b9b1ee">min left</div>
+              </div>
+            </div>
+            <div style="color:#fff;font-size:19px;font-weight:900">Arithmetic Progression</div>
+            <div style="color:#8f86d6;font-size:13.5px;font-weight:700;margin-top:4px">Section 3 · Practice Questions</div>
+            <div style="display:flex;gap:10px;margin-top:30px">
+              <button onClick="{{ endFocus }}" style="cursor:pointer;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:#cfc8ff;font-weight:800;font-size:13.5px;font-family:inherit;padding:13px 20px;border-radius:14px">Take a break</button>
+              <button onClick="{{ endFocus }}" style="cursor:pointer;border:none;background:#FF6B3D;color:#fff;font-weight:800;font-size:13.5px;font-family:inherit;padding:13px 20px;border-radius:14px">End session</button>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ASK AI ============ -->
+          <sc-if value="{{ isAsk }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;flex-direction:column;height:100%">
+            <div style="padding:10px 20px 12px;border-bottom:1.5px solid #f0eefb">
+              <div style="display:flex;align-items:center;gap:10px"><div style="width:38px;height:38px;border-radius:12px;background:linear-gradient(135deg,#4C3AE3,#8a7bff);display:flex;align-items:center;justify-content:center;font-size:19px">✨</div><div><div style="font-size:17px;font-weight:900;color:#1a1730">Ask AI Tutor</div><div style="font-size:12px;font-weight:700;color:#22c07a">● Online · knows your syllabus</div></div></div>
+            </div>
+            <div style="flex:1;overflow-y:auto;padding:18px 18px 8px;display:flex;flex-direction:column;gap:12px">
+              <div style="align-self:flex-end;max-width:78%;background:#4C3AE3;color:#fff;border-radius:18px 18px 5px 18px;padding:12px 15px;font-size:14.5px;font-weight:600;line-height:1.45">I don't get why d can be negative.</div>
+              <div style="align-self:flex-start;max-width:82%;background:#fff;border:1.5px solid #eae7f6;color:#3d3958;border-radius:18px 18px 18px 5px;padding:12px 15px;font-size:14.5px;font-weight:600;line-height:1.5">Great question! d is just the step between terms. If the numbers go <i>down</i> — like 20, 17, 14 — you're subtracting 3 each time, so the step is −3. Same rule, negative direction. 👍</div>
+              <div style="align-self:flex-start;max-width:82%;background:#FFF9EE;border:1.5px solid #ffe6bf;color:#7a5a10;border-radius:14px;padding:11px 14px;font-size:13px;font-weight:700;line-height:1.5">💡 Want me to show 20, 17, 14 on a number line?</div>
+            </div>
+            <div style="padding:8px 16px 8px;display:flex;gap:8px;overflow-x:auto">
+              <div style="flex:none;background:#ECE9FE;color:#4C3AE3;font-weight:800;font-size:12.5px;padding:9px 13px;border-radius:20px;white-space:nowrap">Explain simpler</div>
+              <div style="flex:none;background:#ECE9FE;color:#4C3AE3;font-weight:800;font-size:12.5px;padding:9px 13px;border-radius:20px;white-space:nowrap">Real example</div>
+              <div style="flex:none;background:#ECE9FE;color:#4C3AE3;font-weight:800;font-size:12.5px;padding:9px 13px;border-radius:20px;white-space:nowrap">Show me visually</div>
+            </div>
+            <div style="padding:6px 16px 14px;display:flex;gap:10px;align-items:center">
+              <div style="flex:1;background:#f2f0fb;border-radius:22px;padding:13px 16px;font-size:14px;font-weight:600;color:#a09cbb">Ask anything…</div>
+              <div style="width:44px;height:44px;border-radius:50%;background:#4C3AE3;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px;flex:none">↑</div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ME ============ -->
+          <sc-if value="{{ isMe }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:8px 20px 24px">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px">
+              <div style="width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#4C3AE3,#8a7bff);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;font-weight:900">A</div>
+              <div><div style="font-size:22px;font-weight:900;color:#1a1730">Aarav Mehta</div><div style="font-size:13px;font-weight:700;color:#8a86a6">Class 10 · Holy Bless School</div></div>
+            </div>
+            <div style="display:flex;gap:12px;margin-bottom:18px">
+              <div style="flex:1;background:#fff;border:1.5px solid #f0eefb;border-radius:16px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:900;color:#FF6B3D">🔥 12</div><div style="font-size:12px;font-weight:800;color:#8a86a6">day streak</div></div>
+              <div style="flex:1;background:#fff;border:1.5px solid #f0eefb;border-radius:16px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:900;color:#4C3AE3">86%</div><div style="font-size:12px;font-weight:800;color:#8a86a6">avg mastery</div></div>
+              <div style="flex:1;background:#fff;border:1.5px solid #f0eefb;border-radius:16px;padding:14px;text-align:center"><div style="font-size:24px;font-weight:900;color:#c2870f">7</div><div style="font-size:12px;font-weight:800;color:#8a86a6">badges</div></div>
+            </div>
+            <div style="background:linear-gradient(135deg,#12855a,#22c07a);border-radius:20px;padding:20px;color:#fff;margin-bottom:18px">
+              <div style="font-size:13px;font-weight:800;opacity:.9">Tuition savings this month</div>
+              <div style="font-size:34px;font-weight:900;line-height:1.1;margin:4px 0">₹4,500</div>
+              <div style="font-size:13px;font-weight:700;opacity:.9;line-height:1.4">You've covered everything school taught this month — on your own. 💪</div>
+            </div>
+            <div style="font-size:13px;font-weight:900;color:#8a86a6;text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px">Mastery map</div>
+            <sc-for list="{{ mastery }}" as="m" hint-placeholder-count="4">
+              <div style="margin-bottom:13px">
+                <div style="display:flex;justify-content:space-between;font-size:13.5px;font-weight:800;color:#3d3958;margin-bottom:5px"><span>{{ m.name }}</span><span style="color:{{ m.color }}">{{ m.pct }}</span></div>
+                <div style="height:8px;background:#eeecf7;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ m.pct }};background:{{ m.color }};border-radius:8px"></div></div>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <!-- ============ LEARN ============ -->
+          <sc-if value="{{ isLearn }}" hint-placeholder-val="{{ true }}">
+          <div style="padding:8px 20px 24px">
+            <div style="font-size:26px;font-weight:900;color:#1a1730;margin-bottom:16px">Learn 📚</div>
+            <sc-for list="{{ subjects }}" as="sub" hint-placeholder-count="4">
+              <div style="background:#fff;border:1.5px solid #f0eefb;border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 6px 16px rgba(35,25,90,.06)">
+                <div style="display:flex;align-items:center;gap:14px">
+                  <div style="width:52px;height:52px;border-radius:15px;background:{{ sub.tint }};display:flex;align-items:center;justify-content:center;font-size:24px;flex:none">{{ sub.emoji }}</div>
+                  <div style="flex:1"><div style="font-size:17px;font-weight:900;color:#1a1730">{{ sub.name }}</div><div style="font-size:12.5px;font-weight:700;color:#8a86a6">{{ sub.chapters }}</div></div>
+                  <div style="font-size:15px;font-weight:900;color:{{ sub.color }}">{{ sub.pct }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+        </div>
+
+        <!-- BOTTOM TABS -->
+        <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:none;display:flex;justify-content:space-around;align-items:center;padding:10px 8px 22px;background:#fff;border-top:1.5px solid #f0eefb;box-shadow:0 -6px 20px rgba(35,25,90,.05)">
+          <sc-for list="{{ tabs }}" as="tb" hint-placeholder-count="5">
+            <div onClick="{{ tb.go }}" style="cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;flex:1;color:{{ tb.color }}">
+              <div style="font-size:21px">{{ tb.icon }}</div>
+              <div style="font-size:10.5px;font-weight:800">{{ tb.label }}</div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+      </div>
+    </div>
+    <div style="font-size:12px;font-weight:800;color:#8a86a6;letter-spacing:.3px">Zerebrokid · Student</div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { screen: 'today', tab: 'today', topicId: 'ap', storyOpen:false, picked:null };
+
+  go(screen, tab){ this.setState(s => ({ screen, tab: tab || s.tab })); this._top(); }
+  openTopic(id){ this.setState({ topicId:id, screen:'topic' }); this._top(); }
+  nav(screen){ this.setState({ screen }); this._top(); }
+  _top(){ setTimeout(()=>{ const el=document.querySelector('.zk-scroll'); if(el) el.scrollTop=0; },0); }
+
+  renderVals(){
+    const s = this.state;
+    const mainTabs = ['today','learn','focus','ask','me'];
+    const showTabs = mainTabs.includes(s.screen);
+    const statusColor = s.screen==='focusActive' ? '#e9e7ff' : '#1a1730';
+
+    const topicMeta = {
+      ap:     { subject:'Mathematics', title:'Arithmetic Progression', grad:'linear-gradient(135deg,#4C3AE3,#6E5BF2)', pct:'15%', progress:'1/7' },
+      matter: { subject:'Science', title:'States of Matter', grad:'linear-gradient(135deg,#e0752a,#f2953f)', pct:'40%', progress:'3/7' },
+    };
+    const tm = topicMeta[s.topicId] || topicMeta.ap;
+    const secDefs = [
+      { n:1, title:'Detailed Explanation', desc:'Simple words + worked examples', tag:'Done', done:true, target:'read' },
+      { n:2, title:'Explainer Video', desc:'Watch as many times as you need', tag:'8 min', done:false, target:'read' },
+      { n:3, title:'Practice Questions', desc:'Try it yourself with hints', tag:'6 Qs', done:false, target:'practice' },
+      { n:4, title:'Curiosity · WHY', desc:'Why does it actually work?', tag:'💡', done:false, target:'curiosity' },
+      { n:5, title:'Real-Life Connections', desc:'Where you meet this in the world', tag:'Read', done:false, target:'read' },
+      { n:6, title:'Common Misconceptions', desc:'Traps students fall into', tag:'Read', done:false, target:'read' },
+      { n:7, title:'Experiment / Activity', desc:'Do it with things at home', tag:'Fun', done:false, target:'read' },
+    ];
+    const sections = secDefs.map(d => ({
+      title:d.title, desc:d.desc, tag:d.tag, mark: d.done ? '✓' : String(d.n),
+      dotBg: d.done ? '#22c07a' : '#fff', dotColor: d.done ? '#fff' : '#4C3AE3',
+      border: d.done ? '#bfe9d1' : '#f0eefb',
+      tagBg: d.done ? '#EAF8F0' : '#f2f0fb', tagColor: d.done ? '#12855a' : '#8a86a6',
+      open: ()=>this.nav(d.target),
+    }));
+    const topic = { ...tm, sections };
+    const grid15 = Array.from({length:15});
+
+    const picked = s.picked;
+    const popt = (id,text,correct)=>{
+      const chosen = picked===id;
+      let border='#eae7f6',bg='#fff',color='#1a1730',icon='';
+      if(chosen && correct){ border='#22c07a';bg='#EAF8F0';color='#12855a';icon='✓'; }
+      else if(chosen && !correct){ border='#ff5c5c';bg='#FFECEC';color='#d33';icon='✕'; }
+      else if(picked && correct){ border='#22c07a';bg='#EAF8F0';color='#12855a';icon='✓'; }
+      return { text, border, bg, color, icon, pick:()=>this.setState({picked:id}) };
+    };
+    const practiceOpts = [ popt('a','55',false), popt('b','59',true), popt('c','63',false), popt('d','51',false) ];
+    const quizOpts = [ {k:'A',text:'n = 13'},{k:'B',text:'n = 15'},{k:'C',text:'n = 14'},{k:'D',text:'n = 16'} ];
+
+    const mastery = [
+      { name:'Finding nth term', pct:'92%', color:'#22c07a' },
+      { name:'Sum of n terms', pct:'80%', color:'#4C3AE3' },
+      { name:'Common difference', pct:'88%', color:'#22c07a' },
+      { name:'Decreasing APs (d<0)', pct:'55%', color:'#e0752a' },
+    ];
+    const rewards = [
+      { emoji:'🎮', title:'New game unlocked', sub:'Number Racer', tint:'#ECE9FE' },
+      { emoji:'😂', title:'3 funny videos', sub:'Fresh for today', tint:'#FFF0E4' },
+      { emoji:'🖼️', title:'Meme pack', sub:'Study-life edition', tint:'#EAF8F0' },
+    ];
+    const subjects = [
+      { emoji:'📐', name:'Mathematics', chapters:'14 chapters · 3 this week', pct:'72%', color:'#4C3AE3', tint:'#ECE9FE' },
+      { emoji:'💧', name:'Science', chapters:'12 chapters · 2 this week', pct:'64%', color:'#e0752a', tint:'#FFF0E4' },
+      { emoji:'🌍', name:'Social Science', chapters:'16 chapters', pct:'48%', color:'#12855a', tint:'#EAF8F0' },
+      { emoji:'📖', name:'English', chapters:'10 chapters', pct:'81%', color:'#8a3ae3', tint:'#F3ECFE' },
+    ];
+
+    const topics = [
+      { id:'matter', subject:'Science', subjColor:'#e0752a', title:'States of Matter', emoji:'💧', tint:'#FFF0E4', pct:'40%', progress:'3/7', assigned:'Assigned by Ms. Rao · 4:10 PM', open:()=>this.openTopic('matter') },
+      { id:'ap', subject:'Mathematics', subjColor:'#4C3AE3', title:'Arithmetic Progression', emoji:'📐', tint:'#ECE9FE', pct:'15%', progress:'1/7', assigned:'Assigned by Mr. Singh · 11:30 AM', open:()=>this.openTopic('ap') },
+    ];
+
+    const mk = (id,icon,label) => ({ icon, label, go:()=>this.go(id,id), color: s.tab===id ? '#4C3AE3' : '#b3afc9' });
+    const tabs = [ mk('today','🏠','Today'), mk('learn','📚','Learn'), mk('focus','🎯','Focus'), mk('ask','✨','Ask AI'), mk('me','🙂','Me') ];
+
+    return {
+      isToday: s.screen==='today',
+      isTopic: s.screen==='topic',
+      isRead: s.screen==='read',
+      isCuriosity: s.screen==='curiosity',
+      isPanel: s.screen==='panel',
+      showTabs, statusColor, topics, tabs, topic, grid15,
+      backToday: ()=>this.go('today','today'),
+      backTopic: ()=>this.nav('topic'),
+      openQuiz: ()=>this.nav('quiz'),
+      openCuriosity: ()=>this.nav('curiosity'),
+      openPanel: ()=>this.nav('panel'),
+      noop: ()=>{},
+      storyOpen: s.storyOpen,
+      storyChevron: s.storyOpen ? '⌄' : '›',
+      toggleStory: ()=>this.setState(st=>({storyOpen:!st.storyOpen})),
+
+      isPractice: s.screen==='practice',
+      isQuiz: s.screen==='quiz',
+      isResult: s.screen==='result',
+      isRewards: s.screen==='rewards',
+      isFocus: s.screen==='focus',
+      isFocusActive: s.screen==='focusActive',
+      isAsk: s.screen==='ask',
+      isMe: s.screen==='me',
+      isLearn: s.screen==='learn',
+      practiceOpts, practiceAnswered: !!picked, quizOpts, mastery, rewards, subjects,
+      openResult: ()=>this.nav('result'),
+      openRewards: ()=>this.nav('rewards'),
+      startFocus: ()=>this.nav('focusActive'),
+      endFocus: ()=>this.go('focus','focus'),
+    };
+  }
+}
+</script>
+</body>
+</html>

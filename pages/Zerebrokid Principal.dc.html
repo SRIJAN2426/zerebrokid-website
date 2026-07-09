@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../js/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#d9dde8;font-family:'Nunito',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  a{color:#4C3AE3}a:hover{color:#3a2ec2}
+  .pr-scroll{overflow-y:auto}
+  .pr-scroll::-webkit-scrollbar{width:8px}.pr-scroll::-webkit-scrollbar-thumb{background:#d3d6e0;border-radius:8px}
+</style>
+</helmet>
+<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:36px;background:radial-gradient(circle at 30% 10%,#e7eaf2,#d3d7e2)">
+
+  <div style="width:1360px;max-width:100%;border-radius:16px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(30,27,58,.5);background:#fff">
+    <!-- browser chrome -->
+    <div style="height:44px;background:#e9ebf1;display:flex;align-items:center;gap:14px;padding:0 16px;border-bottom:1px solid #dcdfe8">
+      <div style="display:flex;gap:8px"><div style="width:12px;height:12px;border-radius:50%;background:#ff5f57"></div><div style="width:12px;height:12px;border-radius:50%;background:#febc2e"></div><div style="width:12px;height:12px;border-radius:50%;background:#28c840"></div></div>
+      <div style="flex:1;max-width:520px;background:#fff;border-radius:8px;height:26px;display:flex;align-items:center;padding:0 12px;font-size:12.5px;font-weight:600;color:#8a8fa3">🔒 principal.zerebrokid.in/{{ view }}</div>
+    </div>
+
+    <div style="display:flex;height:820px">
+      <!-- SIDEBAR -->
+      <div style="width:230px;flex:none;background:#1e1b3a;color:#fff;display:flex;flex-direction:column;padding:22px 0">
+        <div style="padding:0 22px;display:flex;align-items:center;gap:10px;margin-bottom:26px">
+          <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,#6355e8,#8a7bff);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:900">Z</div>
+          <div><div style="font-size:16px;font-weight:900;line-height:1">Zerebrokid</div><div style="font-size:10.5px;font-weight:700;color:#8b86c0;letter-spacing:.4px">PRINCIPAL</div></div>
+        </div>
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+          <div onClick="{{ n.go }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;margin:1px 12px;padding:11px 14px;border-radius:11px;background:{{ n.bg }};color:{{ n.color }};font-size:14.5px;font-weight:800">
+            <span style="font-size:17px;width:20px;text-align:center">{{ n.icon }}</span>{{ n.label }}
+          </div>
+        </sc-for>
+        <div style="margin-top:auto;padding:16px 22px 0;border-top:1px solid rgba(255,255,255,.08);margin-top:22px">
+          <div style="display:flex;align-items:center;gap:10px"><div style="width:34px;height:34px;border-radius:50%;background:#3a3468;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900">VK</div><div><div style="font-size:13px;font-weight:800">V. Krishnan</div><div style="font-size:11px;font-weight:600;color:#8b86c0">Holy Bless School</div></div></div>
+        </div>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="pr-scroll" style="flex:1;background:#F5F6FA;overflow-y:auto">
+        <div style="padding:26px 34px 40px">
+
+          <!-- ============ OVERVIEW ============ -->
+          <sc-if value="{{ isOverview }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px">
+              <div><div style="font-size:24px;font-weight:900;color:#1e2029">School overview</div><div style="font-size:13.5px;font-weight:600;color:#8a8fa3">Holy Bless School · Academic year 2026–27</div></div>
+              <div style="background:#fff;border:1px solid #e6e8f0;border-radius:10px;padding:9px 14px;font-size:13px;font-weight:800;color:#4a4d5e">July 2026 ▾</div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px">
+              <sc-for list="{{ kpis }}" as="k" hint-placeholder-count="4">
+                <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:18px">
+                  <div style="font-size:12.5px;font-weight:800;color:#8a8fa3">{{ k.label }}</div>
+                  <div style="font-size:30px;font-weight:900;color:#1e2029;margin:4px 0 2px;letter-spacing:-.5px">{{ k.value }}</div>
+                  <div style="font-size:12px;font-weight:800;color:{{ k.trendColor }}">{{ k.trend }}</div>
+                </div>
+              </sc-for>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:16px;margin-bottom:20px">
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+                <div style="font-size:15px;font-weight:900;color:#1e2029;margin-bottom:2px">Quiz performance trend</div>
+                <div style="font-size:12.5px;font-weight:700;color:#8a8fa3;margin-bottom:18px">Avg class mastery, last 6 weeks</div>
+                <div style="display:flex;align-items:flex-end;gap:20px;height:150px;padding-left:6px">
+                  <sc-for list="{{ trend }}" as="t" hint-placeholder-count="6">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end">
+                      <div style="font-size:12px;font-weight:900;color:#4C3AE3">{{ t.val }}</div>
+                      <div style="width:100%;max-width:38px;height:{{ t.h }};background:linear-gradient(180deg,#6355e8,#4C3AE3);border-radius:8px 8px 0 0"></div>
+                      <div style="font-size:11px;font-weight:800;color:#a7abbb">{{ t.wk }}</div>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+                <div style="font-size:15px;font-weight:900;color:#1e2029;margin-bottom:16px">Syllabus coverage</div>
+                <div style="display:flex;flex-direction:column;align-items:center">
+                  <div style="position:relative;width:150px;height:150px">
+                    <svg width="150" height="150" viewBox="0 0 150 150" style="transform:rotate(-90deg)"><circle cx="75" cy="75" r="60" fill="none" stroke="#eceef4" stroke-width="18"></circle><circle cx="75" cy="75" r="60" fill="none" stroke="#22a06b" stroke-width="18" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="102"></circle></svg>
+                    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center"><div style="font-size:30px;font-weight:900;color:#1e2029">73%</div><div style="font-size:11px;font-weight:800;color:#8a8fa3">on track</div></div>
+                  </div>
+                  <div style="font-size:12.5px;font-weight:700;color:#8a8fa3;margin-top:12px;text-align:center">Planned vs taught across all classes</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><div style="font-size:15px;font-weight:900;color:#1e2029">Rollout & adoption</div><div onClick="{{ goRollout }}" style="cursor:pointer;font-size:12.5px;font-weight:800;color:#4C3AE3">Manage →</div></div>
+              <div style="display:flex;gap:24px;align-items:center">
+                <div style="flex:1"><div style="display:flex;justify-content:space-between;font-size:13px;font-weight:800;color:#4a4d5e;margin-bottom:6px"><span>Parents activated</span><span>512 / 640 · 80%</span></div><div style="height:10px;background:#eceef4;border-radius:8px;overflow:hidden"><div style="height:100%;width:80%;background:#4C3AE3;border-radius:8px"></div></div></div>
+                <div style="width:1px;height:40px;background:#eceef4"></div>
+                <div style="text-align:center"><div style="font-size:24px;font-weight:900;color:#e08a2a">128</div><div style="font-size:11.5px;font-weight:700;color:#8a8fa3">reminders pending</div></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SYLLABUS ============ -->
+          <sc-if value="{{ isSyllabus }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Syllabus coverage</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:22px">How much of the planned syllabus is actually taught & mastered</div>
+            <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;overflow:hidden">
+              <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 90px;gap:16px;padding:14px 22px;background:#fafbfd;border-bottom:1px solid #eceef4;font-size:11.5px;font-weight:900;color:#8a8fa3;text-transform:uppercase;letter-spacing:.5px"><div>Class · Subject · Teacher</div><div>Taught</div><div>Mastered</div><div></div></div>
+              <sc-for list="{{ syllabus }}" as="r" hint-placeholder-count="6">
+                <div style="display:grid;grid-template-columns:1.6fr 1fr 1fr 90px;gap:16px;padding:16px 22px;border-bottom:1px solid #f2f3f7;align-items:center">
+                  <div><div style="font-size:14.5px;font-weight:800;color:#1e2029">{{ r.name }}</div><div style="font-size:12px;font-weight:700;color:#a7abbb">{{ r.teacher }}</div></div>
+                  <div><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#eceef4;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ r.taught }};background:#4C3AE3;border-radius:8px"></div></div><span style="font-size:12.5px;font-weight:800;color:#4a4d5e;width:34px">{{ r.taught }}</span></div></div>
+                  <div><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:8px;background:#eceef4;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ r.mastered }};background:#22a06b;border-radius:8px"></div></div><span style="font-size:12.5px;font-weight:800;color:#4a4d5e;width:34px">{{ r.mastered }}</span></div></div>
+                  <div><span style="font-size:11px;font-weight:800;color:{{ r.flagColor }};background:{{ r.flagBg }};padding:4px 10px;border-radius:12px">{{ r.flag }}</span></div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ATTENDANCE ============ -->
+          <sc-if value="{{ isAttendance }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px">
+              <div><div style="font-size:24px;font-weight:900;color:#1e2029">Attendance</div><div style="font-size:13.5px;font-weight:600;color:#8a8fa3">Captured automatically — no paper registers</div></div>
+              <div style="display:flex;gap:10px"><div style="background:#e4f6ee;color:#178a56;border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:800">✓ Auto-synced 8:15 AM</div><div style="background:#fff;border:1px solid #e6e8f0;border-radius:10px;padding:9px 14px;font-size:12.5px;font-weight:800;color:#4a4d5e">⬇ Export</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:18px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Present today</div><div style="font-size:30px;font-weight:900;color:#22a06b">601</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:18px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Absent</div><div style="font-size:30px;font-weight:900;color:#d94040">39</div></div>
+              <div style="background:#fdf3e6;border:1px solid #f3ddba;border-radius:16px;padding:18px"><div style="font-size:12.5px;font-weight:800;color:#9a6a1a">Teachers absent</div><div style="font-size:30px;font-weight:900;color:#c2500f">2</div><div onClick="{{ goSub }}" style="cursor:pointer;font-size:12px;font-weight:800;color:#c2500f">Assign substitutes →</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+              <div style="font-size:15px;font-weight:900;color:#1e2029;margin-bottom:16px">Attendance by class · today</div>
+              <sc-for list="{{ attendance }}" as="a" hint-placeholder-count="5">
+                <div style="display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid #f2f3f7">
+                  <div style="width:90px;font-size:14px;font-weight:800;color:#1e2029">{{ a.cls }}</div>
+                  <div style="flex:1;height:10px;background:#eceef4;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ a.pct }};background:{{ a.color }};border-radius:8px"></div></div>
+                  <div style="font-size:13px;font-weight:800;color:#4a4d5e;width:120px;text-align:right">{{ a.detail }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ AUTOMATIONS (Machine) ============ -->
+          <sc-if value="{{ isAutomations }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Automation Machine</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:20px">Type any manual school workflow and we'll automate it.</div>
+
+            <div style="background:linear-gradient(135deg,#2a2550,#3a3468);border-radius:16px;padding:20px;margin-bottom:22px">
+              <div style="background:#fff;border-radius:12px;display:flex;align-items:center;gap:12px;padding:6px 6px 6px 16px">
+                <span style="font-size:18px">✨</span>
+                <span style="flex:1;font-size:14.5px;font-weight:600;color:#4a4d5e">Make a list of students with pending monthly fees and send reminders</span>
+                <div style="background:#4C3AE3;color:#fff;font-size:13.5px;font-weight:800;padding:11px 20px;border-radius:9px">Generate</div>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
+                <div style="font-size:12px;font-weight:700;color:#c9c4ee;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:16px">Try: "Assign substitute when a teacher is absent"</div>
+                <div style="font-size:12px;font-weight:700;color:#c9c4ee;background:rgba(255,255,255,.1);padding:6px 12px;border-radius:16px">"Send exam timetable to all parents"</div>
+              </div>
+            </div>
+
+            <div style="font-size:13px;font-weight:900;color:#8a8fa3;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px">Generated automations</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+              <sc-for list="{{ autos }}" as="au" hint-placeholder-count="2">
+                <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:18px">
+                  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px"><div style="width:36px;height:36px;border-radius:10px;background:{{ au.tint }};display:flex;align-items:center;justify-content:center;font-size:18px">{{ au.emoji }}</div><div style="font-size:14.5px;font-weight:900;color:#1e2029;line-height:1.2">{{ au.title }}</div></div>
+                  <sc-for list="{{ au.steps }}" as="st" hint-placeholder-count="4">
+                    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+                      <div style="width:22px;height:22px;border-radius:7px;background:#f0effb;color:#4C3AE3;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;flex:none">{{ st.n }}</div>
+                      <div style="font-size:12.5px;font-weight:700;color:#4a4d5e;line-height:1.3">{{ st.text }}</div>
+                    </div>
+                  </sc-for>
+                  <div style="display:flex;gap:8px;margin-top:14px"><div style="flex:1;text-align:center;background:#4C3AE3;color:#fff;font-size:13px;font-weight:800;padding:10px;border-radius:10px">Approve & Run</div><div style="background:#f2f3f7;color:#4a4d5e;font-size:13px;font-weight:800;padding:10px 14px;border-radius:10px">Edit</div></div>
+                </div>
+              </sc-for>
+            </div>
+            <div onClick="{{ goSub }}" style="cursor:pointer;background:#fff;border:1px solid #e9ebf2;border-radius:14px;padding:14px 18px;margin-top:16px;display:flex;align-items:center;gap:12px"><div style="font-size:20px">🔁</div><div style="flex:1;font-size:14px;font-weight:800;color:#1e2029">See the substitute-teacher approval in action</div><div style="color:#4C3AE3;font-weight:800">›</div></div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SUBSTITUTE APPROVAL ============ -->
+          <sc-if value="{{ isSubstitute }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div onClick="{{ goAutomations }}" style="cursor:pointer;font-size:13.5px;font-weight:800;color:#4C3AE3;margin-bottom:12px">‹ Automations</div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Substitute teacher</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:22px">AI matched a stand-in for Ms. Rao (absent today)</div>
+
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+              <sc-for list="{{ flow }}" as="f" hint-placeholder-count="4">
+                <div style="flex:1;background:{{ f.bg }};border:1px solid {{ f.border }};border-radius:13px;padding:14px;text-align:center"><div style="font-size:22px">{{ f.icon }}</div><div style="font-size:12px;font-weight:800;color:{{ f.color }};margin-top:6px;line-height:1.25">{{ f.label }}</div></div>
+              </sc-for>
+            </div>
+
+            <div style="max-width:560px;background:#fff;border:1px solid #e9ebf2;border-radius:18px;overflow:hidden;box-shadow:0 12px 30px rgba(30,27,58,.08)">
+              <div style="background:#f0effb;padding:12px 20px;font-size:12.5px;font-weight:900;color:#4C3AE3;display:flex;align-items:center;gap:8px">✨ AI SUGGESTION · needs your approval</div>
+              <div style="padding:22px">
+                <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px"><div style="width:52px;height:52px;border-radius:14px;background:#e5e2fb;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#4C3AE3">SM</div><div><div style="font-size:17px;font-weight:900;color:#1e2029">Mr. Sanjay Menon</div><div style="font-size:13px;font-weight:700;color:#8a8fa3">Maths · free Period 5 · Class 9-B</div></div></div>
+                <div style="background:#fafbfd;border-radius:12px;padding:14px 16px;font-size:13px;font-weight:700;color:#4a4d5e;line-height:1.55;margin-bottom:18px"><b style="color:#1e2029">Why this match:</b> subject-matched (Maths), free during Ms. Rao's Period 5 slot, no timetable clash, and has taught Class 9 before.</div>
+                <div style="display:flex;gap:12px"><div onClick="{{ goAutomations }}" style="cursor:pointer;flex:1;text-align:center;background:#22a06b;color:#fff;font-size:14.5px;font-weight:800;padding:13px;border-radius:12px">✓ Approve — update timetable</div><div style="background:#f2f3f7;color:#4a4d5e;font-size:14.5px;font-weight:800;padding:13px 18px;border-radius:12px">Suggest another</div></div>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ REVENUE ============ -->
+          <sc-if value="{{ isRevenue }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Revenue share</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:22px">Transparent earnings from parent subscriptions</div>
+            <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:16px;margin-bottom:20px">
+              <div style="background:linear-gradient(135deg,#4C3AE3,#6355e8);border-radius:16px;padding:20px;color:#fff"><div style="font-size:13px;font-weight:800;opacity:.85">School's share this month</div><div style="font-size:34px;font-weight:900;letter-spacing:-.5px;margin:4px 0">₹20,480</div><div style="font-size:12.5px;font-weight:700;opacity:.85">40% of ₹51,200 collected</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Parents paying</div><div style="font-size:30px;font-weight:900;color:#1e2029;margin-top:4px">512</div><div style="font-size:12px;font-weight:800;color:#22a06b">▲ 34 this month</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Total collected</div><div style="font-size:30px;font-weight:900;color:#1e2029;margin-top:4px">₹51,200</div><div style="font-size:12px;font-weight:800;color:#8a8fa3">₹100 × 512</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:1.5fr 1fr;gap:16px">
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+                <div style="font-size:15px;font-weight:900;color:#1e2029;margin-bottom:16px">Monthly collection</div>
+                <div style="display:flex;align-items:flex-end;gap:16px;height:140px">
+                  <sc-for list="{{ revenue }}" as="r" hint-placeholder-count="6">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end"><div style="width:100%;max-width:34px;height:{{ r.h }};background:linear-gradient(180deg,#22c07a,#1f9a60);border-radius:7px 7px 0 0"></div><div style="font-size:11px;font-weight:800;color:#a7abbb">{{ r.m }}</div></div>
+                  </sc-for>
+                </div>
+                <div style="font-size:12.5px;font-weight:700;color:#22a06b;margin-top:14px">📈 Growing as more parents activate — projected ₹28k share by December.</div>
+              </div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+                <div style="font-size:15px;font-weight:900;color:#1e2029;margin-bottom:14px">Payout history</div>
+                <sc-for list="{{ payouts }}" as="p" hint-placeholder-count="4">
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-bottom:1px solid #f2f3f7"><div><div style="font-size:13.5px;font-weight:800;color:#1e2029">{{ p.month }}</div><div style="font-size:11.5px;font-weight:700;color:#a7abbb">{{ p.date }}</div></div><div style="display:flex;align-items:center;gap:8px"><span style="font-size:14px;font-weight:900;color:#1e2029">{{ p.amt }}</span><span style="font-size:11px;font-weight:800;color:#178a56;background:#e4f6ee;padding:3px 8px;border-radius:10px">Paid</span></div></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ ROLLOUT / SETTINGS ============ -->
+          <sc-if value="{{ isRollout }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Rollout & mandate</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:22px">Drive parent activation across the school</div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px">
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Adoption</div><div style="font-size:30px;font-weight:900;color:#4C3AE3">80%</div><div style="font-size:12px;font-weight:700;color:#8a8fa3">512 of 640 parents</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">Not activated</div><div style="font-size:30px;font-weight:900;color:#e08a2a">128</div><div style="font-size:12px;font-weight:700;color:#8a8fa3">across 14 classes</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px"><div style="font-size:12.5px;font-weight:800;color:#8a8fa3">This week</div><div style="font-size:30px;font-weight:900;color:#22a06b">+34</div><div style="font-size:12px;font-weight:700;color:#8a8fa3">new activations</div></div>
+            </div>
+            <div style="background:#fff;border:1px solid #e9ebf2;border-radius:16px;padding:20px">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px"><div style="font-size:15px;font-weight:900;color:#1e2029">Classes needing a nudge</div><div style="background:#4C3AE3;color:#fff;font-size:13px;font-weight:800;padding:10px 16px;border-radius:10px">📣 Send reminders to all</div></div>
+              <sc-for list="{{ classesRollout }}" as="c" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid #f2f3f7"><div style="width:90px;font-size:14px;font-weight:800;color:#1e2029">{{ c.cls }}</div><div style="flex:1;height:9px;background:#eceef4;border-radius:8px;overflow:hidden"><div style="height:100%;width:{{ c.pct }};background:{{ c.color }};border-radius:8px"></div></div><div style="font-size:13px;font-weight:800;color:#4a4d5e;width:70px;text-align:right">{{ c.pct }}</div><div style="font-size:12px;font-weight:800;color:#4C3AE3;width:80px;text-align:right">Remind</div></div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+          <!-- ============ SETTINGS ============ -->
+          <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="font-size:24px;font-weight:900;color:#1e2029;margin-bottom:2px">Settings</div>
+            <div style="font-size:13.5px;font-weight:600;color:#8a8fa3;margin-bottom:22px">School profile, language & privacy</div>
+            <div style="max-width:640px;display:flex;flex-direction:column;gap:14px">
+              <div onClick="{{ goRollout }}" style="cursor:pointer;background:#fff;border:1px solid #e9ebf2;border-radius:14px;padding:18px;display:flex;align-items:center;gap:14px"><div style="font-size:22px">🚀</div><div style="flex:1"><div style="font-size:15px;font-weight:900;color:#1e2029">Rollout & mandate tools</div><div style="font-size:12.5px;font-weight:700;color:#8a8fa3">Activation status & reminders</div></div><div style="color:#c3c6d2;font-weight:800">›</div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:14px;padding:18px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:15px;font-weight:900;color:#1e2029">Language</div><div style="font-size:12.5px;font-weight:700;color:#8a8fa3">Dashboard & parent notifications</div></div><div style="display:flex;gap:6px;background:#f2f3f7;border-radius:10px;padding:4px"><div style="background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.1);color:#1e2029;font-size:13px;font-weight:800;padding:7px 14px;border-radius:8px">English</div><div style="color:#8a8fa3;font-size:13px;font-weight:800;padding:7px 14px">हिंदी</div></div></div>
+              <div style="background:#fff;border:1px solid #e9ebf2;border-radius:14px;padding:18px;display:flex;align-items:center;justify-content:space-between"><div><div style="font-size:15px;font-weight:900;color:#1e2029">Data privacy</div><div style="font-size:12.5px;font-weight:700;color:#8a8fa3">Student data handling & consent policy</div></div><div style="font-size:13px;font-weight:800;color:#4C3AE3">Review →</div></div>
+            </div>
+          </div>
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { view:'overview' };
+  go(view){ this.setState({ view }); const el=document.querySelector('.pr-scroll'); if(el) setTimeout(()=>el.scrollTop=0,0); }
+
+  renderVals(){
+    const s=this.state;
+    const nk=(id,icon,label)=>{ const on=s.view===id || (id==='automations'&&(s.view==='substitute')) || (id==='settings'&&s.view==='rollout'); return { icon,label, go:()=>this.go(id), bg:on?'#332d5e':'transparent', color:on?'#fff':'#b3aed6' }; };
+    const nav=[ nk('overview','◧','Overview'), nk('syllabus','▦','Syllabus'), nk('attendance','✓','Attendance'), nk('automations','⚡','Automations'), nk('revenue','₹','Revenue'), nk('settings','⚙','Settings') ];
+
+    const kpis=[
+      { label:'Syllabus coverage', value:'73%', trend:'▲ 6% vs last month', trendColor:'#22a06b' },
+      { label:'Avg attendance', value:'94%', trend:'▲ 2% this week', trendColor:'#22a06b' },
+      { label:'Active students', value:'602', trend:'of 640 enrolled', trendColor:'#8a8fa3' },
+      { label:'Revenue this month', value:'₹51,200', trend:'▲ ₹4,300', trendColor:'#22a06b' },
+    ];
+    const trend=[
+      { wk:'W1', val:'58', h:'52%' },{ wk:'W2', val:'62', h:'58%' },{ wk:'W3', val:'61', h:'56%' },
+      { wk:'W4', val:'67', h:'68%' },{ wk:'W5', val:'71', h:'78%' },{ wk:'W6', val:'74', h:'88%' },
+    ];
+
+    const syllabus=[
+      { name:'Class 10-A · Maths', teacher:'Ms. Rao', taught:'82%', mastered:'74%', flag:'On track', flagColor:'#178a56', flagBg:'#e4f6ee' },
+      { name:'Class 10-B · Science', teacher:'Mr. Iyer', taught:'68%', mastered:'52%', flag:'At risk', flagColor:'#c2500f', flagBg:'#fbf1e4' },
+      { name:'Class 9-A · Maths', teacher:'Mr. Menon', taught:'78%', mastered:'70%', flag:'On track', flagColor:'#178a56', flagBg:'#e4f6ee' },
+      { name:'Class 9-B · Science', teacher:'Ms. Rao', taught:'61%', mastered:'41%', flag:'At risk', flagColor:'#c2500f', flagBg:'#fbf1e4' },
+      { name:'Class 8-A · English', teacher:'Ms. Fernandes', taught:'90%', mastered:'81%', flag:'Ahead', flagColor:'#4C3AE3', flagBg:'#eceafd' },
+      { name:'Class 8-B · Social Sci.', teacher:'Mr. Gupta', taught:'55%', mastered:'44%', flag:'At risk', flagColor:'#c2500f', flagBg:'#fbf1e4' },
+    ];
+    const attendance=[
+      { cls:'Class 10-A', pct:'97%', color:'#22a06b', detail:'37 / 38' },
+      { cls:'Class 10-B', pct:'92%', color:'#22a06b', detail:'35 / 38' },
+      { cls:'Class 9-A', pct:'89%', color:'#e0a54a', detail:'34 / 38' },
+      { cls:'Class 9-B', pct:'95%', color:'#22a06b', detail:'36 / 38' },
+      { cls:'Class 8-A', pct:'84%', color:'#e0a54a', detail:'32 / 38' },
+    ];
+    const autos=[
+      { emoji:'🔁', title:'Assign a substitute when a teacher is absent', tint:'#eceafd', steps:[
+        { n:1, text:'Read today\u2019s timetable' },{ n:2, text:'Check available teachers' },{ n:3, text:'Match by subject & free period' },{ n:4, text:'Suggest → update on approval' } ] },
+      { emoji:'💰', title:'List students with pending fees & send reminders', tint:'#e4f6ee', steps:[
+        { n:1, text:'Check fee records' },{ n:2, text:'Build pending list' },{ n:3, text:'Draft WhatsApp / SMS reminder' },{ n:4, text:'Send on approval' } ] },
+    ];
+    const flow=[
+      { icon:'🚫', label:'Teacher marked absent', bg:'#fbf1e4', border:'#f3ddba', color:'#c2500f' },
+      { icon:'📅', label:'AI reads timetable', bg:'#fff', border:'#e9ebf2', color:'#4a4d5e' },
+      { icon:'🔍', label:'Matches subject & free slot', bg:'#fff', border:'#e9ebf2', color:'#4a4d5e' },
+      { icon:'✓', label:'Suggests → you approve', bg:'#e4f6ee', border:'#bfe3d0', color:'#178a56' },
+    ];
+    const revenue=[
+      { m:'Feb', h:'40%' },{ m:'Mar', h:'52%' },{ m:'Apr', h:'60%' },{ m:'May', h:'72%' },{ m:'Jun', h:'84%' },{ m:'Jul', h:'92%' },
+    ];
+    const payouts=[
+      { month:'June 2026', date:'2 Jul · settled', amt:'₹16,180' },
+      { month:'May 2026', date:'2 Jun · settled', amt:'₹14,900' },
+      { month:'April 2026', date:'2 May · settled', amt:'₹13,240' },
+      { month:'March 2026', date:'2 Apr · settled', amt:'₹11,600' },
+    ];
+    const classesRollout=[
+      { cls:'Class 8-B', pct:'58%', color:'#e0a54a' },
+      { cls:'Class 7-A', pct:'64%', color:'#e0a54a' },
+      { cls:'Class 6-C', pct:'71%', color:'#4C3AE3' },
+      { cls:'Class 9-B', pct:'76%', color:'#4C3AE3' },
+    ];
+
+    return {
+      view:s.view,
+      isOverview:s.view==='overview', isSyllabus:s.view==='syllabus', isAttendance:s.view==='attendance',
+      isAutomations:s.view==='automations', isSubstitute:s.view==='substitute', isRevenue:s.view==='revenue',
+      isRollout:s.view==='rollout', isSettings:s.view==='settings',
+      nav, kpis, trend, syllabus, attendance, autos, flow, revenue, payouts, classesRollout,
+      goRollout:()=>this.go('rollout'),
+      goSub:()=>this.go('substitute'),
+      goAutomations:()=>this.go('automations'),
+    };
+  }
+}
+</script>
+</body>
+</html>
